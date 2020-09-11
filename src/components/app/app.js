@@ -1,4 +1,6 @@
 import React from 'react';
+import Highlight from 'react-highlight.js'
+
 import withQuestionnaireService from '../hoc';
 
 import './app.css';
@@ -9,7 +11,9 @@ const App = ({questionnaireService}) => {
       <li>
         <ul>
           <li>{item.id}. {item.question}</li>
-          <li>{item.task}</li>
+          <li>
+            <Highlight language="javascript">{item.task}</Highlight>
+          </li>
           <li>
             <ul>
               {item.option_list.map((option) => {

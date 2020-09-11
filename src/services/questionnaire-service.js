@@ -13,7 +13,7 @@ export default class QuestionnaireService {
           "- D: `undefined` and `ReferenceError`"
         ],
         "question":"What's the output?",
-        "task":"```javascript\nfunction sayHi() {\n  console.log(name);\n  console.log(age);\n  var name = 'Lydia';\n  let age = 21;\n}\n\nsayHi();\n```"
+        "task":"javascript\nfunction sayHi() {\n  console.log(name);\n  console.log(age);\n  var name = 'Lydia';\n  let age = 21;\n}\n\nsayHi();\n"
       },
       {
         "answer":"C",
@@ -25,7 +25,7 @@ export default class QuestionnaireService {
           "- C: `3 3 3` and `0 1 2`"
         ],
         "question":"What's the output?",
-        "task":"```javascript\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1);\n}\n\nfor (let i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1);\n}\n```"
+        "task":"javascript\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1);\n}\n\nfor (let i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 1);\n}\n"
       }
     ]
   }
