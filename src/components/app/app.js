@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Highlight from 'react-highlight.js'
+import ReactMarkdown from 'react-markdown';
 
 import withQuestionnaireService from '../hoc';
 
@@ -12,13 +13,13 @@ class App extends Component {
   }
 
   renderItems = (questionList) => {
-    return questionList.map((item) => {
+    return questionList.slice(130, 138).map((item) => {
       return (
-        <li>
+        <li key={item.id}>
             <ul>
               <li>{item.id}. {item.question}</li>
               <li>
-                <Highlight language="javascript">{item.task}</Highlight>
+                <Highlight language={"javascript"}>{item.task}</Highlight>
               </li>
               <li>
                 <ul>
@@ -29,7 +30,9 @@ class App extends Component {
               </li>
               <br/>
               <li>Answer: {item.answer}</li>
-              <li>{item.explanation}</li>
+              <li>
+                <ReactMarkdown source={item.explanation} escapeHtml={false} />
+              </li>
             </ul>
             <br/>
           </li>
