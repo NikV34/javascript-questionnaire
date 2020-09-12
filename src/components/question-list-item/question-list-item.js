@@ -15,7 +15,7 @@ const QuestionListItem = ({question}) => {
       <li>
         <ol>
           {question.option_list.map((option) => {
-            return <li><ReactMarkdown source={option} escapeHtml={false} /></li>
+            return <li key={question.option_list.indexOf(option)}><ReactMarkdown source={option} escapeHtml={false} /></li>
           })}
         </ol>
       </li>

@@ -2,7 +2,7 @@ const updateQuestionList = (state, action) => {
 
   if (state === undefined) {
     return {
-      questionList: [],
+      questions: [],
       loading: true,
       error: null
     }
@@ -12,29 +12,27 @@ const updateQuestionList = (state, action) => {
 
     case 'FETCH_QUESTIONS_REQUEST':
       return {
-        questionList: [],
+        questions: [],
         loading: true,
         error: null
       };
 
     case 'FETCH_QUESTIONS_SUCCESS':
       return {
-        questionList: action.payload,
+        questions: action.payload,
         loading: false,
         error: null
       };
 
     case 'FETCH_QUESTIONS_FAILURE':
       return {
-        questionList: [],
+        questions: [],
         loading: false,
         error: action.payload
       };
 
     default:
-      return {
-        questionList: state.questionList
-      }
+      return state.questionList
   }
 };
 
