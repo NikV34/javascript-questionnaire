@@ -26,6 +26,13 @@ const fetchQuestions = (questionnaireService, dispatch) => () => {
     .catch((err) => dispatch(questionsError(err)));
 };
 
+export const questionOpened = (questionId) => {
+  return {
+    type: 'OPENED_QUESTION',
+    payload: questionId
+  };
+};
+
 export {
   fetchQuestions
 };

@@ -1,14 +1,21 @@
 import React from 'react';
 
-import QuestionList from '../question-list';
+import QuestionListContainer from '../containers/question-list-container';
+import QuestionDetailsContainer from "../containers/question-details-container";
 
 import './app.css';
 
-
 const App = () => {
   return (
-    <div>
-      <QuestionList/>
+    <div className="container">
+      <div className="row">
+        <div className="col-md-4">
+          <QuestionListContainer/>
+        </div>
+        <div className="col-md-8">
+          <QuestionDetailsContainer/>
+        </div>
+      </div>
     </div>
   )
 }
