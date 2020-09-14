@@ -1,20 +1,19 @@
 import React from 'react';
-import withMarkdown from '../hoc/with-markdown';
+
+import QuestionOptionListItem from '../question-option-list-item';
 
 import './question-option-list.css';
 
 const QuestionOptionList = ({options}) => {
-  return options.map((option, idx) => {
-    const id = idx + 1;
-    return (
-      <div className="custom-control custom-radio" key={id}>
-        <input type="radio" id={`customRadio${id}`} name="customRadio" className="custom-control-input" />
-        <label className="custom-control-label" htmlFor={`customRadio${id}`}>
-          {withMarkdown(option)}
-        </label>
-      </div>
-    )
-  })
+  return (
+    <div className="question-option-list">
+      {options.map((option, idx) => {
+        return (
+          <QuestionOptionListItem option={option} id={idx + 1}/>
+        )
+      })}
+    </div>
+  )
 }
 
 export default QuestionOptionList;

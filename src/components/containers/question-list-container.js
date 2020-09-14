@@ -14,7 +14,7 @@ class QuestionListContainer extends Component {
   }
 
   render() {
-    const { questions, loading, error, questionId, onOpenedQuestion  } = this.props;
+    const { questions, loading, error, questionId, onOpenedQuestion } = this.props;
 
     if (loading) {
       return <Spinner />;
@@ -27,7 +27,9 @@ class QuestionListContainer extends Component {
     const openedQuestionId = (!questionId && questions.length !== 0) ? questions[0].id : questionId;
 
     return (
-      <QuestionList questions={questions} openedQuestionId={openedQuestionId} onOpenedQuestion={onOpenedQuestion} />
+      <QuestionList questions={questions}
+                    openedQuestionId={openedQuestionId}
+                    onOpenedQuestion={onOpenedQuestion} />
     );
   };
 }

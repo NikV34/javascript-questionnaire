@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import withHighlighting from '../hoc/with-highlighting';
 import QuestionOptionList from '../question-option-list';
@@ -10,21 +10,25 @@ const QuestionTask = ({task}) => {
   return <span>{task}</span>;
 }
 
-const QuestionDetails = ({question, passed}) => {
-  const HighlightedQuestionTask = withHighlighting(QuestionTask);
+class QuestionDetails extends Component {
 
-  return (
-    <div className="card question-details">
-      <div className="card-header">
-        <h5>{`${question.id}. ${question.question}${passed ? "Passed" : ""}`}</h5>
+  render() {
+    const {question, passed} = this.props;
+    const HighlightedQuestionTask = withHighlighting(QuestionTask);
+
+    return (
+      <div className="card question-details">
+        <div className="card-header">
+          <h5>{`${question.id}. ${question.question}${passed ? "Passed" : ""}`}</h5>
+        </div>
+        <div className="card-body">
+          <HighlightedQuestionTask task={question.task}/>
+          <QuestionOptionList options={question.option_list} />
+          <button className="btn btn-primary">Go somewhere</button>
+        </div>
       </div>
-      <div className="card-body">
-        <HighlightedQuestionTask task={question.task}/>
-        <QuestionOptionList options={question.option_list} />
-        <button className="btn btn-primary" >Go somewhere</button>
-      </div>
-    </div>
-  );
+    );
+}
 }
 
 export default QuestionDetails;
