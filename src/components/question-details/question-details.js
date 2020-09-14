@@ -5,7 +5,6 @@ import QuestionOptionList from '../question-option-list';
 
 import './question-details.css';
 
-
 const QuestionTask = ({task}) => {
   return <span>{task}</span>;
 }
@@ -13,18 +12,25 @@ const QuestionTask = ({task}) => {
 class QuestionDetails extends Component {
 
   render() {
-    const {question, passed} = this.props;
+    const {question, onQuestionPassed, onQuestionFailed} = this.props;
     const HighlightedQuestionTask = withHighlighting(QuestionTask);
+
+    const onAnsweredQuestion = (optionId) => {
+      if (optionId === question.answer + 1) {
+        onQuestionPassed(question.id)
+      } else {
+        onQuestionFailed(question.id)
+      }
+    }
 
     return (
       <div className="card question-details">
         <div className="card-header">
-          <h5>{`${question.id}. ${question.question}${passed ? "Passed" : ""}`}</h5>
+          <h5>{`${question.id}. ${question.question}`}</h5>
         </div>
         <div className="card-body">
           <HighlightedQuestionTask task={question.task}/>
-          <QuestionOptionList options={question.option_list} />
-          <button className="btn btn-primary">Go somewhere</button>
+          <QuestionOptionList question={question} onAnsweredQuestion={onAnsweredQuestion}/>
         </div>
       </div>
     );

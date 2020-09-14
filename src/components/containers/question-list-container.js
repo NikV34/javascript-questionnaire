@@ -36,14 +36,12 @@ class QuestionListContainer extends Component {
 
 const mapStateToProps = ({
                            questionList: { questions, loading, error },
-                           activeQuestion: {questionId, passed, shownAnswer}}) => {
+                           activeQuestion: {questionId}}) => {
   return {
     questions,
     loading,
     error,
-    questionId,
-    passed,
-    shownAnswer
+    questionId
   };
 }
 

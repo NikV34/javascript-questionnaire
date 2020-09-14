@@ -1,4 +1,11 @@
 
+const _questionListTransform = (questions) => {
+  return questions.map((question) => {
+    question.status = null;
+    return question;
+  })
+}
+
 const questionsRequested = () => {
   return {
     type: 'FETCH_QUESTIONS_REQUEST'
@@ -8,7 +15,7 @@ const questionsRequested = () => {
 const questionsLoaded = (newQuestions) => {
   return {
     type: 'FETCH_QUESTIONS_SUCCESS',
-    payload: newQuestions
+    payload: _questionListTransform(newQuestions)
   };
 };
 
@@ -28,7 +35,21 @@ const fetchQuestions = (questionnaireService, dispatch) => () => {
 
 export const questionOpened = (questionId) => {
   return {
-    type: 'OPENED_QUESTION',
+    type: 'OPEN_QUESTION',
+    payload: questionId
+  };
+};
+
+export const questionPassed = (questionId) => {
+  return {
+    type: 'ANSWER_QUESTION_SUCCESS',
+    payload: questionId
+  };
+};
+
+export const questionFailed = (questionId) => {
+  return {
+    type: 'ANSWER_QUESTION_FAILURE',
     payload: questionId
   };
 };

@@ -5,11 +5,12 @@ import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 import QuestionDetails from "../question-details";
 import AnswerDetails from "../answer-details";
+import {questionFailed, questionPassed } from "../../actions";
 
 class QuestionDetailsContainer extends Component {
 
   render() {
-    const { questions, loading, error, questionId, passed, shownAnswer } = this.props;
+    const { questions, loading, error, questionId, onQuestionPassed, onQuestionFailed } = this.props;
 
     const openedQuestionId = (!questionId && questions.length !== 0) ? questions[0].id : questionId;
 
@@ -23,10 +24,15 @@ class QuestionDetailsContainer extends Component {
       return <ErrorIndicator />;
     }
 
+
     return (
       <React.Fragment>
-        <QuestionDetails question={openedQuestion} passed={passed} />
-        <AnswerDetails question={openedQuestion} shownAnswer={shownAnswer} />
+        <QuestionDetails
+          question={openedQuestion}
+          onQuestionPassed={onQuestionPassed}
+          onQuestionFailed={onQuestionFailed}
+        />
+        <AnswerDetails />
       </React.Fragment>
     )
   }
@@ -34,16 +40,20 @@ class QuestionDetailsContainer extends Component {
 
 const mapStateToProps = ({
                            questionList: { questions, loading, error },
-                           activeQuestion: {questionId, passed, shownAnswer}}) => {
+                           activeQuestion: { questionId } }) => {
   return {
     questions,
     loading,
     error,
-    questionId,
-    passed,
-    shownAnswer
+    questionId
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onQuestionPassed: (id) => dispatch(questionPassed(id)),
+    onQuestionFailed: (id) => dispatch(questionFailed(id))
+  };
+};
 
-export default connect(mapStateToProps)(QuestionDetailsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionDetailsContainer);

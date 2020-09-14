@@ -1,3 +1,16 @@
+const updateQuestionStatus = (questions, id, status) => {
+  const question = questions.find(item => item.id === id);
+  const questionIndex = questions.indexOf(question)
+  question.status = status;
+  return [
+    ...questions.slice(0, questionIndex),
+    question,
+    ...questions.slice(questionIndex + 1)
+  ]
+
+
+}
+
 const updateQuestionList = (state, action) => {
 
   if (state === undefined) {
@@ -29,6 +42,18 @@ const updateQuestionList = (state, action) => {
         questions: [],
         loading: false,
         error: action.payload
+      };
+
+    case 'ANSWER_QUESTION_SUCCESS':
+      return {
+        ...state.questionList,
+        questions: updateQuestionStatus(state.questionList.questions, action.payload, true)
+      };
+
+    case 'ANSWER_QUESTION_FAILURE':
+      return {
+        ...state.questionList,
+        questions: updateQuestionStatus(state.questionList.questions, action.payload, false)
       };
 
     default:
