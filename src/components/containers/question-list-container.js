@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 import QuestionList from '../question-list/question-list';
-import { fetchQuestions } from '../../actions';
+import {fetchQuestions, questionOpened} from '../../actions';
 import { withQuestionnaireService } from '../hoc';
 
 class QuestionListContainer extends Component {
@@ -14,7 +14,7 @@ class QuestionListContainer extends Component {
   }
 
   render() {
-    const { questions, loading, error } = this.props;
+    const { questions, loading, error, questionId:openedQuestionId, onOpenedQuestion  } = this.props;
 
     if (loading) {
       return <Spinner />;
@@ -25,18 +25,28 @@ class QuestionListContainer extends Component {
     }
 
     return (
-      <QuestionList questions={questions}/>
-    )
-  }
+      <QuestionList questions={questions} openedQuestionId={openedQuestionId} onOpenedQuestion={onOpenedQuestion} />
+    );
+  };
 }
 
-const mapStateToProps = ({questionList: { questions, loading, error }}) => {
-  return { questions, loading, error }
+const mapStateToProps = ({
+                           questionList: { questions, loading, error },
+                           activeQuestion: {questionId, passed, shownAnswer}}) => {
+  return {
+    questions,
+    loading,
+    error,
+    questionId,
+    passed,
+    shownAnswer
+  };
 }
 
 const mapDispatchToProps = (dispatch, { questionnaireService }) => {
   return {
-    fetchQuestions: fetchQuestions(questionnaireService, dispatch)
+    fetchQuestions: fetchQuestions(questionnaireService, dispatch),
+    onOpenedQuestion: (id) => dispatch(questionOpened(id))
   };
 };
 

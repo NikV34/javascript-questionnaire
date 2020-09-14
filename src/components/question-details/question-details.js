@@ -10,7 +10,7 @@ const QuestionTask = ({task}) => {
   return <span>{task}</span>;
 }
 
-const QuestionDetails = ({question, passed, onOpenedQuestion}) => {
+const QuestionDetails = ({question, passed}) => {
   const HighlightedQuestionTask = withHighlighting(QuestionTask);
 
   return (
@@ -23,7 +23,7 @@ const QuestionDetails = ({question, passed, onOpenedQuestion}) => {
         <ol>
           <QuestionOptionList options={question.option_list} />
         </ol>
-        <button href="#" className="btn btn-primary" onClick={onOpenedQuestion}>Go somewhere</button>
+        <button className="btn btn-primary" >Go somewhere</button>
       </div>
     </div>
   );

@@ -5,14 +5,13 @@ import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 import QuestionDetails from "../question-details";
 import AnswerDetails from "../answer-details";
-import {questionOpened} from "../../actions";
 
 class QuestionDetailsContainer extends Component {
 
   render() {
-    const { questions, loading, error, questionId, passed, shownAnswer, onOpenedQuestion } = this.props;
+    const { questions, loading, error, questionId, passed, shownAnswer } = this.props;
 
-    const openedQuestion = questions[questionId];
+    const openedQuestion = questions.find((question) => question.id === questionId);
 
     if (loading) {
       return <Spinner />;
@@ -24,7 +23,7 @@ class QuestionDetailsContainer extends Component {
 
     return (
       <React.Fragment>
-        <QuestionDetails question={openedQuestion} passed={passed} onOpenedQuestion={() => onOpenedQuestion(0)}/>
+        <QuestionDetails question={openedQuestion} passed={passed} />
         <AnswerDetails question={openedQuestion} shownAnswer={shownAnswer} />
       </React.Fragment>
     )
@@ -44,10 +43,5 @@ const mapStateToProps = ({
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onOpenedQuestion: (id) => dispatch(questionOpened(id))
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionDetailsContainer);
+export default connect(mapStateToProps)(QuestionDetailsContainer);

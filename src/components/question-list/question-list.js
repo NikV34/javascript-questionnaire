@@ -4,20 +4,27 @@ import QuestionListItem from '../question-list-item';
 
 import './question-list.css';
 
-const renderItems = (questionList) => {
+const renderItems = (questionList, openedQuestionId, onOpenedQuestion) => {
   return questionList.slice(130, 135).map((question) => {
+    let className = 'list-group-item list-group-item-action';
+    if (question.id === openedQuestionId) {
+      className += ' active'
+    }
     return (
-      <button type="button" className="btn btn-secondary" key={question.id.toString()}>
-        <QuestionListItem question={question}/>
-      </button>
+      <QuestionListItem
+        className={className}
+        key={question.id.toString()}
+        question={question}
+        onOpenedQuestion={() => onOpenedQuestion(question.id)} />
     )
   })
 }
 
-const QuestionList = ({ questions }) => {
+const QuestionList = ({ questions, openedQuestionId, onOpenedQuestion }) => {
+  console.log("openedQuestionId:", openedQuestionId)
   return (
-    <div className="btn-group-vertical question-list">
-      { renderItems(questions) }
+    <div className="list-group">
+      { renderItems(questions, openedQuestionId, onOpenedQuestion) }
     </div>
   )
 }

@@ -2,7 +2,7 @@ const updateActiveQuestion = (state, action) => {
 
   if (state === undefined) {
     return {
-      questionId: 130,
+      questionId: 131,
       passed: null,
       shownAnswer: true
     }
@@ -11,10 +11,8 @@ const updateActiveQuestion = (state, action) => {
   switch (action.type) {
 
     case 'OPENED_QUESTION':
-      console.log(action.payload)
       let newActiveQuestion = {...state.activeQuestion};
       newActiveQuestion.questionId = action.payload;
-      console.log(newActiveQuestion)
       return {
         ...newActiveQuestion,
         ...state.questionList

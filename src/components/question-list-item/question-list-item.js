@@ -7,10 +7,12 @@ const Question = ({id, content}) => {
   return <span>{`${id}. ${content}`}</span>;
 }
 
-const QuestionListItem = ({question}) => {
+const QuestionListItem = ({question, className, onOpenedQuestion }) => {
 
   return (
-    <Question id={question.id} content={question.question} />
+    <button type="button" className={className} onClick={onOpenedQuestion}>
+      <Question id={question.id} content={question.question} />
+    </button>
   )
 };
 
