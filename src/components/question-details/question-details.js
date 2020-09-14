@@ -20,9 +20,7 @@ const QuestionDetails = ({question, passed}) => {
       </div>
       <div className="card-body">
         <HighlightedQuestionTask task={question.task}/>
-        <ol>
-          <QuestionOptionList options={question.option_list} />
-        </ol>
+        <QuestionOptionList options={question.option_list} />
         <button className="btn btn-primary" >Go somewhere</button>
       </div>
     </div>
