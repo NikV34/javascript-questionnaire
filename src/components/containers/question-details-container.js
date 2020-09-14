@@ -11,7 +11,9 @@ class QuestionDetailsContainer extends Component {
   render() {
     const { questions, loading, error, questionId, passed, shownAnswer } = this.props;
 
-    const openedQuestion = questions.find((question) => question.id === questionId);
+    const openedQuestionId = (!questionId && questions.length !== 0) ? questions[0].id : questionId;
+
+    const openedQuestion = questions.find((question) => question.id === openedQuestionId);
 
     if (loading) {
       return <Spinner />;

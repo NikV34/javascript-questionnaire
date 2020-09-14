@@ -2,7 +2,7 @@ const updateActiveQuestion = (state, action) => {
 
   if (state === undefined) {
     return {
-      questionId: 131,
+      questionId: null,
       passed: null,
       shownAnswer: true
     }
