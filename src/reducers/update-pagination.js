@@ -17,7 +17,7 @@ const updatePagination = (state, action) => {
   if (state === undefined) {
     return {
       page: 0,
-      size: 15,
+      size: 5,
       totalItems: undefined
     }
   }

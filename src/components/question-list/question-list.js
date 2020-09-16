@@ -4,6 +4,7 @@ import QuestionListNavigation from '../question-list-navigation';
 import QuestionListItem from '../question-list-item';
 
 import './question-list.css';
+import QuestionnaireProgressContainer from '../containers/questionnaire-progress-container';
 
 const renderItems = (questionList, pagination, openedQuestionId, onOpenedQuestion) => {
   return questionList
@@ -26,6 +27,7 @@ const renderItems = (questionList, pagination, openedQuestionId, onOpenedQuestio
 const QuestionList = ({ questions, pagination, openedQuestionId, onOpenedQuestion, onToggleQuestionListNavigation }) => {
   return (
     <div className="col-md-12 col-12">
+      <QuestionnaireProgressContainer questions={questions}/>
       <div className="btn-group question-list" role="group" aria-label="Question number group">
         <QuestionListNavigation
           btnRole="prev"

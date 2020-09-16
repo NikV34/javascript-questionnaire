@@ -1,7 +1,7 @@
 import React from 'react';
 
 import QuestionListContainer from '../containers/question-list-container';
-import QuestionDetailsContainer from "../containers/question-details-container";
+import QuestionDetailsContainer from '../containers/question-details-container';
 
 import './app.css';
 
