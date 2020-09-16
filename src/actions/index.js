@@ -54,6 +54,19 @@ export const questionFailed = (questionId) => {
   };
 };
 
+export const toggleQuestionListNavigation = (actionType) => {
+  switch (actionType) {
+    case 'prev':
+      return {
+        type: 'TOGGLE_PREV_NAVIGATION'
+      };
+    case 'next':
+      return {
+        type: 'TOGGLE_NEXT_NAVIGATION'
+      };
+  }
+};
+
 export {
   fetchQuestions
 };

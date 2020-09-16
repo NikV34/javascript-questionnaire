@@ -3,15 +3,11 @@ import React from 'react';
 import './question-list-item.css';
 
 
-const Question = ({id, content}) => {
-  return <span>{`${id}. ${content}`}</span>;
-}
-
 const QuestionListItem = ({question, className, onOpenedQuestion }) => {
 
   return (
     <button type="button" className={className} onClick={onOpenedQuestion}>
-      <Question id={question.id} content={question.question} />
+      <span>{question.id}</span>
     </button>
   )
 };

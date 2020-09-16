@@ -9,12 +9,8 @@ const App = () => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-md-4">
-          <QuestionListContainer/>
-        </div>
-        <div className="col-md-8">
-          <QuestionDetailsContainer/>
-        </div>
+        <QuestionListContainer/>
+        <QuestionDetailsContainer/>
       </div>
     </div>
   )

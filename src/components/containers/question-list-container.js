@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 import QuestionList from '../question-list/question-list';
-import {fetchQuestions, questionOpened} from '../../actions';
+import {fetchQuestions, questionOpened, toggleQuestionListNavigation} from '../../actions';
 import { withQuestionnaireService } from '../hoc';
 
 class QuestionListContainer extends Component {
@@ -14,7 +14,7 @@ class QuestionListContainer extends Component {
   }
 
   render() {
-    const { questions, loading, error, questionId, onOpenedQuestion } = this.props;
+    const { questions, page,  loading, error, questionId, onOpenedQuestion, onToggleQuestionListNavigation } = this.props;
 
     if (loading) {
       return <Spinner />;
@@ -27,18 +27,21 @@ class QuestionListContainer extends Component {
     const openedQuestionId = (!questionId && questions.length !== 0) ? questions[0].id : questionId;
 
     return (
-      <QuestionList questions={questions}
+      <QuestionList page={page}
+                    questions={questions}
                     openedQuestionId={openedQuestionId}
-                    onOpenedQuestion={onOpenedQuestion} />
+                    onOpenedQuestion={onOpenedQuestion} 
+                    onToggleQuestionListNavigation={onToggleQuestionListNavigation}/>
     );
   };
 }
 
 const mapStateToProps = ({
-                           questionList: { questions, loading, error },
+                           questionList: { questions, page, loading, error },
                            activeQuestion: {questionId}}) => {
   return {
     questions,
+    page,
     loading,
     error,
     questionId
@@ -48,7 +51,8 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch, { questionnaireService }) => {
   return {
     fetchQuestions: fetchQuestions(questionnaireService, dispatch),
-    onOpenedQuestion: (id) => dispatch(questionOpened(id))
+    onOpenedQuestion: (id) => dispatch(questionOpened(id)),
+    onToggleQuestionListNavigation: (action) => dispatch(toggleQuestionListNavigation(action))
   };
 };
 

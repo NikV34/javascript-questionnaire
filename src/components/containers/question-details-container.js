@@ -26,14 +26,14 @@ class QuestionDetailsContainer extends Component {
 
 
     return (
-      <React.Fragment>
+      <div className="col-md-12 col-12">
         <QuestionDetails
           question={openedQuestion}
           onQuestionPassed={onQuestionPassed}
           onQuestionFailed={onQuestionFailed}
         />
         <AnswerDetails />
-      </React.Fragment>
+      </div>
     )
   }
 }

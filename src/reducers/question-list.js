@@ -7,8 +7,20 @@ const updateQuestionStatus = (questions, id, status) => {
     question,
     ...questions.slice(questionIndex + 1)
   ]
+}
 
+const togglePrevQuestionList = (questions, page) => {
+  if (!page) {
+    return 0
+  } 
+  return page - 1;
+}
 
+const toggleNextQuestionList = (questions, page) => {
+  if (page < Math.floor(questions.length / 15)) {
+    return page + 1 
+  } 
+  return page;
 }
 
 const updateQuestionList = (state, action) => {
@@ -16,6 +28,7 @@ const updateQuestionList = (state, action) => {
   if (state === undefined) {
     return {
       questions: [],
+      page: 0,
       loading: true,
       error: null
     }
@@ -26,6 +39,7 @@ const updateQuestionList = (state, action) => {
     case 'FETCH_QUESTIONS_REQUEST':
       return {
         questions: [],
+        page: 0,
         loading: true,
         error: null
       };
@@ -33,6 +47,7 @@ const updateQuestionList = (state, action) => {
     case 'FETCH_QUESTIONS_SUCCESS':
       return {
         questions: action.payload,
+        page: 0,
         loading: false,
         error: null
       };
@@ -40,6 +55,7 @@ const updateQuestionList = (state, action) => {
     case 'FETCH_QUESTIONS_FAILURE':
       return {
         questions: [],
+        page: 0,
         loading: false,
         error: action.payload
       };
@@ -55,6 +71,18 @@ const updateQuestionList = (state, action) => {
         ...state.questionList,
         questions: updateQuestionStatus(state.questionList.questions, action.payload, false)
       };
+
+    case 'TOGGLE_PREV_NAVIGATION':
+      return {
+        ...state.questionList,
+        page: togglePrevQuestionList(state.questionList.questions, state.questionList.page)
+      }
+
+    case 'TOGGLE_NEXT_NAVIGATION':
+    return {
+      ...state.questionList,
+      page: toggleNextQuestionList(state.questionList.questions, state.questionList.page)
+    }
 
     default:
       return state.questionList
