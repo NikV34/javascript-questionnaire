@@ -20,7 +20,8 @@ const QuestionnaireProgress = ({ progress, failed, passed, total }) => {
              aria-valuemax={total}>{`${Math.floor(progress * 100 / total)}%`}
         </div>
       </div>
-    </div>  )
+    </div>
+  )
 }
 
 export default QuestionnaireProgress;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 import QuestionDetails from "../question-details";
 import AnswerDetails from "../answer-details";
@@ -17,7 +16,7 @@ class QuestionDetailsContainer extends Component {
     const openedQuestion = questions.find((question) => question.id === openedQuestionId);
 
     if (loading) {
-      return <Spinner />;
+      return <div></div>;
     }
 
     if (error) {
