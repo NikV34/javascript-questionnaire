@@ -14,7 +14,7 @@ class QuestionListContainer extends Component {
   }
 
   render() {
-    const { questions, page,  loading, error, questionId, onOpenedQuestion, onToggleQuestionListNavigation } = this.props;
+    const { questions, loading, error, pagination, questionId, onOpenedQuestion, onToggleQuestionListNavigation } = this.props;
 
     if (loading) {
       return <Spinner />;
@@ -27,7 +27,7 @@ class QuestionListContainer extends Component {
     const openedQuestionId = (!questionId && questions.length !== 0) ? questions[0].id : questionId;
 
     return (
-      <QuestionList page={page}
+      <QuestionList pagination={pagination}
                     questions={questions}
                     openedQuestionId={openedQuestionId}
                     onOpenedQuestion={onOpenedQuestion} 
@@ -37,13 +37,14 @@ class QuestionListContainer extends Component {
 }
 
 const mapStateToProps = ({
-                           questionList: { questions, page, loading, error },
-                           activeQuestion: {questionId}}) => {
+                           questionList: { questions, loading, error },
+                           activeQuestion: {questionId},
+                           pagination}) => {
   return {
-    questions,
-    page,
     loading,
     error,
+    questions,
+    pagination,
     questionId
   };
 }
