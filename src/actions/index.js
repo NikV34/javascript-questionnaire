@@ -40,30 +40,44 @@ export const questionOpened = (questionId) => {
   };
 };
 
-export const questionPassed = (questionId) => {
-  return {
-    type: 'ANSWER_QUESTION_SUCCESS',
-    payload: questionId
-  };
+export const toggleQuestionOpened = (actionType, currentQuestionIndex) => {
+  if (actionType === 'prev') {
+    return {
+      type: 'OPEN_PREV_QUESTION',
+      payload: currentQuestionIndex
+    };
+  }
+  if (actionType === 'next') {
+    return {
+      type: 'OPEN_NEXT_QUESTION',
+      payload: currentQuestionIndex
+    };
+  }
 };
 
-export const questionFailed = (questionId) => {
+export const questionAnswered = (result, questionId) => {
+  if (result) {
+    return {
+      type: 'ANSWER_QUESTION_SUCCESS',
+      payload: questionId
+    };
+  }
   return {
     type: 'ANSWER_QUESTION_FAILURE',
     payload: questionId
   };
-};
+}
 
 export const toggleQuestionListNavigation = (actionType) => {
-  switch (actionType) {
-    case 'prev':
-      return {
-        type: 'TOGGLE_PREV_NAVIGATION'
-      };
-    case 'next':
-      return {
-        type: 'TOGGLE_NEXT_NAVIGATION'
-      };
+  if (actionType === 'prev') {
+    return {
+      type: 'TOGGLE_PREV_NAVIGATION'
+    };
+  }
+  if (actionType === 'next') {
+    return {
+      type: 'TOGGLE_NEXT_NAVIGATION'
+    };
   }
 };
 

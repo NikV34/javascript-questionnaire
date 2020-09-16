@@ -12,8 +12,7 @@ const updateActiveQuestion = (state, action) => {
       let newActiveQuestion = {...state.activeQuestion};
       newActiveQuestion.questionId = action.payload;
       return {
-        ...newActiveQuestion,
-        ...state.questionList
+        ...newActiveQuestion
       };
 
     default:
