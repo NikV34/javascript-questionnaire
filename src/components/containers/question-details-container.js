@@ -39,14 +39,14 @@ class QuestionDetailsContainer extends Component {
     }
 
     return (
-      <div className="col-md-12 col-12">
+      <React.Fragment>
         <QuestionDetails
           question={openedQuestion}
           questionAnswered={(result) => questionAnswered(result, openedQuestion.id)}
           onToggleQuestionOpened={(action) => onToggleQuestionOpened(action, openedQuestionIndex)}
         />
         <AnswerDetails />
-      </div>
+      </React.Fragment>
     )
   }
 }

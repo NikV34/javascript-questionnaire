@@ -25,16 +25,18 @@ class QuestionDetails extends Component {
     }
 
     return (
-      <div className="card question-details">
-        <div className="card-header">
-          <h5>{`${question.id}. ${question.question}`}</h5>
-        </div>
-        <div className="card-body">
-          <HighlightedQuestionTask task={question.task}/>
-          <QuestionOptionList question={question} onAnsweredQuestion={onAnsweredQuestion}/>
-          <div className="btn-group" role="group" aria-label="Basic example">
-            <button type="button" className="btn btn-secondary" onClick={onToggleQuestionOpened('prev')}>Prev question</button>
-            <button type="button" className="btn btn-primary" onClick={onToggleQuestionOpened('next')}>Next question</button>
+      <div className="col-md-6 col-12">
+        <div className="card question-details">
+          <div className="card-header">
+            <h5>{`${question.id}. ${question.question}`}</h5>
+          </div>
+          <div className="card-body">
+            <HighlightedQuestionTask task={question.task}/>
+            <QuestionOptionList question={question} onAnsweredQuestion={onAnsweredQuestion}/>
+            <div className="btn-group" role="group" aria-label="Basic example">
+              <button type="button" className="btn btn-secondary" onClick={onToggleQuestionOpened('prev')}>Prev question</button>
+              <button type="button" className="btn btn-primary" onClick={onToggleQuestionOpened('next')}>Next question</button>
+            </div>
           </div>
         </div>
       </div>

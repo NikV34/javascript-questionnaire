@@ -19,12 +19,14 @@ const AnswerDetails = ({questions, questionId}) => {
   const openedQuestion = questions.find((question) => question.id === openedQuestionId);
   if (openedQuestion.status !== null) {
     return (
-      <div className="card">
-        <div className="card-header">
-          <QuestionAnswer answer={openedQuestion.answer} />
-        </div>
-        <div className="card-body">
-          <QuestionExplanation explanation={openedQuestion.explanation} />
+      <div className="col-md-6 col-12">
+        <div className="card">
+          <div className="card-header">
+            <QuestionAnswer answer={openedQuestion.answer} />
+          </div>
+          <div className="card-body">
+            <QuestionExplanation explanation={openedQuestion.explanation} />
+          </div>
         </div>
       </div>
     )
