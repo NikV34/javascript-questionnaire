@@ -2,17 +2,23 @@ import React from 'react';
 
 import QuestionListNavigation from '../question-list-navigation';
 import QuestionListItem from '../question-list-item';
-
-import './question-list.css';
 import QuestionnaireProgressContainer from '../containers/questionnaire-progress-container';
+import './question-list.css';
+
 
 const renderItems = (questionList, pagination, openedQuestionId, onOpenedQuestion) => {
   return questionList
     .slice(pagination.page * pagination.size , pagination.page * pagination.size + pagination.size)
     .map((question) => {
-      let className = 'btn btn-outline-secondary';
+      let className = 'question-list-item-button';
       if (question.id === openedQuestionId) {
         className += ' active'
+      }
+      if (question.status) {
+        className += ' question-passed'
+      }
+      if (question.status === false) {
+        className += ' question-failed'
       }
       return (
         <QuestionListItem
@@ -26,9 +32,9 @@ const renderItems = (questionList, pagination, openedQuestionId, onOpenedQuestio
 
 const QuestionList = ({ questions, pagination, openedQuestionId, onOpenedQuestion, onToggleQuestionListNavigation }) => {
   return (
-    <div className="col-md-12 col-12">
+    <div className="question-list-container">
       <QuestionnaireProgressContainer questions={questions}/>
-      <div className="btn-group question-list" role="group" aria-label="Question number group">
+      <div className="question-list" role="group" aria-label="Question number group">
         <QuestionListNavigation
           btnRole="prev"
           disabled={!pagination.page}

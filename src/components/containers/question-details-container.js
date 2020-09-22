@@ -38,15 +38,21 @@ class QuestionDetailsContainer extends Component {
       return <ErrorIndicator />;
     }
 
+    const style = {
+      "display": "flex",
+      "flex-direction": "row",
+      "flex-grow": 1
+    }
+
     return (
-      <React.Fragment>
+      <div className="question-details-container" style={style}>
         <QuestionDetails
           question={openedQuestion}
-          questionAnswered={(result) => questionAnswered(result, openedQuestion.id)}
+          questionAnswered={(result, answeredOptionIndex) => questionAnswered(result, openedQuestion.id, answeredOptionIndex)}
           onToggleQuestionOpened={(action) => onToggleQuestionOpened(action, openedQuestionIndex)}
         />
         <AnswerDetails />
-      </React.Fragment>
+      </div>
     )
   }
 }
@@ -64,7 +70,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    questionAnswered: (result, id) => dispatch(questionAnswered(result, id)),
+    questionAnswered: (result, id, answeredOptionIndex) => dispatch(questionAnswered(result, id, answeredOptionIndex)),
     toggleQuestionOpened: (actionType, id) => dispatch(toggleQuestionOpened(actionType, id))
   };
 };

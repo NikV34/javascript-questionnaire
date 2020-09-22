@@ -2,6 +2,7 @@
 const _questionListTransform = (questions) => {
   return questions.map((question) => {
     question.status = null;
+    question.answeredOptionIndex = null;
     return question;
   })
 }
@@ -55,16 +56,22 @@ export const toggleQuestionOpened = (actionType, currentQuestionIndex) => {
   }
 };
 
-export const questionAnswered = (result, questionId) => {
+export const questionAnswered = (result, questionId, answeredOptionIndex) => {
   if (result) {
     return {
       type: 'ANSWER_QUESTION_SUCCESS',
-      payload: questionId
+      payload: {
+        questionId: questionId,
+        answeredOptionIndex: answeredOptionIndex
+      }
     };
   }
   return {
     type: 'ANSWER_QUESTION_FAILURE',
-    payload: questionId
+    payload: {
+      questionId: questionId,
+      answeredOptionIndex: answeredOptionIndex
+    }
   };
 }
 

@@ -1,4 +1,10 @@
 .question-list {
     width: 100%;
-    margin-bottom: 20px;
+    display: inline-flex;
+    justify-content: space-between;
+    margin-bottom: 48px;
+}
+
+button:focus {
+    outline: 0;
 }

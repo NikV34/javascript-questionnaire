@@ -1,0 +1,14 @@
+.answer-details-headline {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 29px;
+    letter-spacing: 0.02em;
+    margin-bottom: 36px;
+}
+
+.answer-details-explanation {
+    margin-left: 25px;
+    padding: 20px 19px;
+    border-radius: 10px;
+    background-color: #F8F8FA;
+}

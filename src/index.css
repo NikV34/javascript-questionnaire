@@ -5,7 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin-top: 50px;
+  background-color: #E9EDF0;
+  font-family: 'Lato', sans-serif;
+  color: #686868;
 }
 
 code {

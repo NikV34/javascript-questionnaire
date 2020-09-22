@@ -1,0 +1,53 @@
+.page-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.page-headline {
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 43px;
+    letter-spacing: 0.02em;
+    margin-top: 70px;
+    margin-bottom: 48px;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    margin-top: 70px;
+}
+
+.results-headline {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.02em;
+}
+
+.results-score-list{
+    display: inline-flex;
+}
+
+.results-score-item {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.02em;
+    margin-right: 20px;
+}
+
+.results-score-item:last-child {
+    margin-right: 0;
+}
+
+.results-score-item .passed {
+    font-weight: bold;
+    color: #57D4BA;
+}
+
+.results-score-item .failed {
+    font-weight: bold;
+    color: #D6596F;
+}

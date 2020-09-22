@@ -8,7 +8,13 @@ const QuestionOptionList = ({question, onAnsweredQuestion}) => {
   return (
     <div className="question-option-list">
       {question.option_list.map((option, idx) => {
-        const checked = (question.status && idx === question.answer) ? true : null;
+        let optionStatus = null;
+        if (idx === question.answeredOptionIndex && question.status === false) {
+          optionStatus = false;
+        }
+        if (idx === question.answer && question.status) {
+          optionStatus = true;
+        }
         const disabled = question.status !== null;
 
         return (
@@ -17,7 +23,7 @@ const QuestionOptionList = ({question, onAnsweredQuestion}) => {
             id={idx + 1}
             key={`${question.id}-${idx + 1}`}
             status={question.status}
-            checked={checked}
+            optionStatus={optionStatus}
             disabled={disabled}
             onAnsweredQuestion={onAnsweredQuestion}
           />

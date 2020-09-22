@@ -18,26 +18,26 @@ class QuestionDetails extends Component {
     const onAnsweredQuestion = (optionId) => {
       //optionId != index
       if (optionId === question.answer + 1) {
-        questionAnswered(true)
+        questionAnswered(true, optionId - 1)
       } else {
-        questionAnswered(false)
+        questionAnswered(false, optionId - 1)
       }
     }
 
     return (
-      <div className="col-md-6 col-12">
-        <div className="card question-details">
-          <div className="card-header">
-            <h5>{`${question.id}. ${question.question}`}</h5>
-          </div>
-          <div className="card-body">
-            <HighlightedQuestionTask task={question.task}/>
-            <QuestionOptionList question={question} onAnsweredQuestion={onAnsweredQuestion}/>
-            <div className="btn-group" role="group" aria-label="Basic example">
-              <button type="button" className="btn btn-secondary" onClick={onToggleQuestionOpened('prev')}>Prev question</button>
-              <button type="button" className="btn btn-primary" onClick={onToggleQuestionOpened('next')}>Next question</button>
-            </div>
-          </div>
+      <div className="question-details">
+        <h2 className="question-details-headline">{`${question.id}. ${question.question}`}</h2>
+        <div className="question-details-task">
+          <HighlightedQuestionTask task={question.task} />
+        </div>
+        <QuestionOptionList question={question} onAnsweredQuestion={onAnsweredQuestion}/>
+        <div className="question-details-button-group" role="group" aria-label="Basic example">
+          <button type="button" className="question-details-button" onClick={onToggleQuestionOpened('prev')}>
+            <span className="question-details-button-prev">Previous Question</span>
+          </button>
+          <button type="button" className="question-details-button" onClick={onToggleQuestionOpened('next')}>
+            <span className="question-details-button-next">Next Question</span>
+          </button>
         </div>
       </div>
     );

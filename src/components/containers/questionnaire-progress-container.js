@@ -1,5 +1,6 @@
 import React from 'react';
 import QuestionnaireProgress from "../questionnaire-progress";
+import Results from '../results/results';
 
 const QuestionnaireProgressContainer = ({ questions }) => {
   const total = questions.length;
@@ -18,7 +19,11 @@ const QuestionnaireProgressContainer = ({ questions }) => {
   }
 
   return (
-    <QuestionnaireProgress progress={progress}  failed={failed} passed={passed} total={total} />
+    <React.Fragment>
+      <Results progress={progress}  total={total} passed={passed} failed={failed}/>
+      <QuestionnaireProgress progress={progress}  total={total} />
+    </React.Fragment>
+
   )
 }
 

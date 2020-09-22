@@ -1,16 +1,16 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import {withMarkdown} from '../hoc';
 
 import './answer-details.css';
 
 const QuestionAnswer = ({answer}) => {
-  return<span>Answer: {answer + 1}</span>
+  return<h2 className="answer-details-headline">Right Answer: {answer + 1}</h2>
 }
 
 const QuestionExplanation = ({explanation}) => {
-  return withMarkdown(explanation)
+  return <div className="answer-details-explanation">{withMarkdown(explanation)}</div>
 }
 
 const AnswerDetails = ({questions, questionId}) => {
@@ -19,15 +19,9 @@ const AnswerDetails = ({questions, questionId}) => {
   const openedQuestion = questions.find((question) => question.id === openedQuestionId);
   if (openedQuestion.status !== null) {
     return (
-      <div className="col-md-6 col-12">
-        <div className="card">
-          <div className="card-header">
-            <QuestionAnswer answer={openedQuestion.answer} />
-          </div>
-          <div className="card-body">
-            <QuestionExplanation explanation={openedQuestion.explanation} />
-          </div>
-        </div>
+      <div className="answer-details">
+        <QuestionAnswer answer={openedQuestion.answer} />
+        <QuestionExplanation explanation={openedQuestion.explanation} />
       </div>
     )
   }

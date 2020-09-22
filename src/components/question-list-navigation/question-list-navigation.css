@@ -1,0 +1,18 @@
+button:focus {
+    outline: 0;
+}
+
+button.question-list-navigation-button {
+    width: 45px;
+    height: 40px;
+    margin-left: 18px;
+    margin-right: 18px;
+    background: linear-gradient(134.17deg, #EEF0F5 4.98%, #E6E9EF 94.88%);
+    box-shadow: -12px -12px 20px rgba(255, 255, 255, 0.8), 10px 10px 20px rgba(166, 180, 200, 0.7);
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.02em;
+}
