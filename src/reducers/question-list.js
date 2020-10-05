@@ -21,7 +21,6 @@ const updateQuestionList = (state, action) => {
   }
 
   switch (action.type) {
-
     case 'FETCH_QUESTIONS_REQUEST':
       return {
         questions: [],
@@ -41,6 +40,13 @@ const updateQuestionList = (state, action) => {
         questions: [],
         loading: false,
         error: action.payload
+      };
+
+    case 'FETCH_QUESTIONS_FROM_STORAGE_SUCCESS':
+      return {
+        questions: action.payload,
+        loading: false,
+        error: null
       };
 
     case 'ANSWER_QUESTION_SUCCESS':

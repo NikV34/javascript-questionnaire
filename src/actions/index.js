@@ -27,6 +27,13 @@ const questionsError = (error) => {
   };
 };
 
+export const questionsFromLocalStorage = (questions) => {
+  return {
+    type: 'FETCH_QUESTIONS_FROM_STORAGE_SUCCESS',
+    payload: questions
+  };
+};
+
 const fetchQuestions = (questionnaireService, dispatch) => () => {
   dispatch(questionsRequested());
   questionnaireService.getAllQuestions()
