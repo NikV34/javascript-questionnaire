@@ -1,14 +1,14 @@
 .question-option-list-item {
     cursor: pointer;
-    background: url("./img/radio-button-inactive.svg") no-repeat 0 50%;
+    background: url("./img/radio-button-inactive.png") no-repeat 0 50%;
     margin-left: 5px;
     padding-left: 40px;
 }
 
 .question-option-list-item.question-passed{
-    background: url("./img/radio-button-passed.svg") no-repeat 0 50%;
+    background: url("./img/radio-button-passed.png") no-repeat 0 50%;
 }
 
 .question-option-list-item.question-failed{
-    background: url("./img/radio-button-failed.svg") no-repeat 0 50%;
+    background: url("./img/radio-button-failed.png") no-repeat 0 50%;
 }
