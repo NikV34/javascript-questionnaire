@@ -1,10 +1,10 @@
 import React from 'react';
+import { questions, pagination, funcRequired, id } from '../../types';
 
 import QuestionListNavigation from '../question-list-navigation';
 import QuestionListItem from '../question-list-item';
 import QuestionnaireProgressContainer from '../containers/questionnaire-progress-container';
 import './question-list.css';
-
 
 const renderItems = (questionList, pagination, openedQuestionId, onOpenedQuestion) => {
   return questionList
@@ -48,6 +48,13 @@ const QuestionList = ({ questions, pagination, openedQuestionId, onOpenedQuestio
       </div>
     </div>
   )
+}
+
+QuestionList.propTypes = {
+  questionList: questions,
+  pagination: pagination,
+  openedQuestionId: id,
+  onOpenedQuestion: funcRequired
 }
 
 export default QuestionList;

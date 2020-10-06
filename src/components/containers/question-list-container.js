@@ -31,9 +31,7 @@ class QuestionListContainer extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.questions !== prevProps.questions && this.props.questions.length) {
-      this.props.questions.map((item) => {
-        store.set(`questionId${item.id}`, item);
-      });
+      this.props.questions.map(item => store.set(`questionId${item.id}`, item));
     }
   };
 
@@ -60,17 +58,8 @@ class QuestionListContainer extends Component {
   };
 }
 
-const mapStateToProps = ({
-                           questionList: { questions, loading, error },
-                           activeQuestion: {questionId},
-                           pagination}) => {
-  return {
-    loading,
-    error,
-    questions,
-    pagination,
-    questionId
-  };
+const mapStateToProps = ({ questionList: { questions, loading, error }, activeQuestion: { questionId }, pagination }) => { 
+  return { loading, error, questions, pagination, questionId };
 }
 
 const mapDispatchToProps = (dispatch, { questionnaireService }) => {

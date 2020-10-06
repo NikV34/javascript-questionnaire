@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { questions } from '../../types';
 
 import QuestionnaireProgress from "../questionnaire-progress";
 import Results from '../results/results';
@@ -28,17 +28,6 @@ const QuestionnaireProgressContainer = ({ questions }) => {
   )
 }
 
-QuestionnaireProgressContainer.propTypes = {
-  questions: PropTypes.shape({
-    answer: PropTypes.number.isRequired,
-    answeredOptionIndex: PropTypes.number,
-    explanation: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    option_list: PropTypes.arrayOf(PropTypes.string).isRequired,
-    question: PropTypes.string.isRequired,
-    status: PropTypes.bool,
-    task: PropTypes.string.isRequired
-  }).isRequired
-}
+QuestionnaireProgressContainer.propTypes = { questions }
 
 export default QuestionnaireProgressContainer;

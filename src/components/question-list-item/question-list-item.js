@@ -1,9 +1,10 @@
 import React from 'react';
+import { question, className, funcRequired } from '../../types';
 
 import './question-list-item.css';
 
 
-const QuestionListItem = ({question, className, onOpenedQuestion }) => {
+const QuestionListItem = ({ question, className, onOpenedQuestion }) => {
 
   return (
     <button type="button" className={className} onClick={onOpenedQuestion}>
@@ -11,5 +12,11 @@ const QuestionListItem = ({question, className, onOpenedQuestion }) => {
     </button>
   )
 };
+
+QuestionListItem.propTypes = {
+  question: question,
+  className: className,
+  onOpenedQuestion: funcRequired
+}
 
 export default QuestionListItem;

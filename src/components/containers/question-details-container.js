@@ -40,8 +40,8 @@ class QuestionDetailsContainer extends Component {
 
     const style = {
       "display": "flex",
-      "flex-direction": "row",
-      "flex-grow": 1
+      "flexDirection": "row",
+      "flexGrow": 1
     }
 
     return (
@@ -57,15 +57,8 @@ class QuestionDetailsContainer extends Component {
   }
 }
 
-const mapStateToProps = ({
-                           questionList: { questions, loading, error },
-                           activeQuestion: { questionId } }) => {
-  return {
-    questions,
-    loading,
-    error,
-    questionId
-  }
+const mapStateToProps = ({ questionList: { questions, loading, error }, activeQuestion: { questionId } }) => {
+  return { questions, loading, error, questionId }
 }
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,15 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { results } from '../../types'
 
 import './results.css';
 
 const Results = ({ progress, total, passed, failed }) => {
 
   const renderItems = (itemList) => {
-    return itemList.map((item) => {
+    return itemList.map((item, idx) => {
       return (
-        <div className="results-score-item">
-          {item}
+        <div className="results-score-item" key={ idx }>
+          { item }
         </div>
       )
     })
@@ -35,11 +35,6 @@ const Results = ({ progress, total, passed, failed }) => {
   )
 }
 
-Results.propTypes = {
-  progress: PropTypes.number,
-  total: PropTypes.number,
-  passed: PropTypes.number,
-  failed: PropTypes.number
-}
+Results.propTypes = {...results}
 
 export default Results;
