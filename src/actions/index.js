@@ -83,15 +83,17 @@ export const questionAnswered = (result, questionId, answeredOptionIndex) => {
 }
 
 export const toggleQuestionListNavigation = (actionType) => {
-  if (actionType === 'prev') {
-    return {
-      type: 'TOGGLE_PREV_NAVIGATION'
-    };
-  }
-  if (actionType === 'next') {
-    return {
-      type: 'TOGGLE_NEXT_NAVIGATION'
-    };
+  switch (actionType) {
+    case 'start':
+      return { type: 'TOGGLE_START_NAVIGATION' };
+    case 'prev':
+      return { type: 'TOGGLE_PREV_NAVIGATION' };
+    case 'next':
+      return { type: 'TOGGLE_NEXT_NAVIGATION' };
+    case 'end':
+      return { type: 'TOGGLE_END_NAVIGATION' };
+    default:
+      return { type: 'TOGGLE_START_NAVIGATION' };
   }
 };
 

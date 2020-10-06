@@ -48,7 +48,7 @@ export const results = {
   progress: progress,
   total: total,
   passed: number.isRequired,
-  failed: number.isRequired
+  failed: number.isRequired 
 };
 
 export const pagination = shape(

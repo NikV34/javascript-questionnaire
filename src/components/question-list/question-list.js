@@ -22,10 +22,10 @@ const renderItems = (questionList, pagination, openedQuestionId, onOpenedQuestio
       }
       return (
         <QuestionListItem
-            className={className}
-            key={question.id.toString()}
-            question={question}
-            onOpenedQuestion={() => onOpenedQuestion(question.id)} />
+            className={ className }
+            key={ question.id.toString() }
+            question={ question }
+            onOpenedQuestion={ () => onOpenedQuestion(question.id) } />
       )
     })
 }
@@ -33,18 +33,27 @@ const renderItems = (questionList, pagination, openedQuestionId, onOpenedQuestio
 const QuestionList = ({ questions, pagination, openedQuestionId, onOpenedQuestion, onToggleQuestionListNavigation }) => {
   return (
     <div className="question-list-container">
-      <QuestionnaireProgressContainer questions={questions}/>
+      <QuestionnaireProgressContainer questions={ questions }/>
       <div className="question-list" role="group" aria-label="Question number group">
+      <QuestionListNavigation
+          btnRole="start"
+          disabled={ !pagination.page }
+          onToggleQuestionListNavigation={ () => onToggleQuestionListNavigation('start') }
+        />
         <QuestionListNavigation
           btnRole="prev"
-          disabled={!pagination.page}
-          onToggleQuestionListNavigation={() => onToggleQuestionListNavigation('prev')}
+          disabled={ !pagination.page }
+          onToggleQuestionListNavigation={ () => onToggleQuestionListNavigation('prev') }
         />
         { renderItems(questions, pagination, openedQuestionId, onOpenedQuestion) }
         <QuestionListNavigation
           btnRole="next"
-          disabled={pagination.page >= Math.floor(pagination.totalItems / pagination.size)}
-          onToggleQuestionListNavigation={() => onToggleQuestionListNavigation('next')} />
+          disabled={ pagination.page >= Math.floor(pagination.totalItems / pagination.size) }
+          onToggleQuestionListNavigation={ () => onToggleQuestionListNavigation('next') } />
+        <QuestionListNavigation
+        btnRole="end"
+        disabled={ pagination.page >= Math.floor(pagination.totalItems / pagination.size) }
+        onToggleQuestionListNavigation={ () => onToggleQuestionListNavigation('end') } />
       </div>
     </div>
   )

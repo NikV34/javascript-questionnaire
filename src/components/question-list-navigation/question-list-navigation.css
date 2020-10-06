@@ -16,3 +16,24 @@ button.question-list-navigation-button {
     line-height: 17px;
     letter-spacing: 0.02em;
 }
+
+.question-list-navigation-button span {
+    display: block;
+    height: 13px;
+}
+
+.start-icon {
+    background: url("./img/start-icon.svg") no-repeat 50%;
+}
+
+.prev-icon {
+    background: url("./img/prev-icon.svg") no-repeat 50%;
+}
+
+.next-icon {
+    background: url("./img/next-icon.svg") no-repeat 50%;
+}
+
+.end-icon {
+    background: url("./img/end-icon.svg") no-repeat 50%;
+}
