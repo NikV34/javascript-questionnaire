@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import ErrorIndicator from '../error-indicator';
 import QuestionDetails from "../question-details";
 import AnswerDetails from "../answer-details";
-import { toggleQuestionOpened, questionAnswered} from "../../actions";
+import { toggleQuestionOpened, questionAnswered, clearQuestionsStatus } from "../../actions";
 
 class QuestionDetailsContainer extends Component {
 
@@ -15,7 +15,8 @@ class QuestionDetailsContainer extends Component {
       error,
       questionId,
       questionAnswered,
-      toggleQuestionOpened
+      toggleQuestionOpened,
+      clearQuestionsStatus
       } = this.props;
 
     const openedQuestionId = (!questionId && questions.length !== 0) ? questions[0].id : questionId;
@@ -47,9 +48,10 @@ class QuestionDetailsContainer extends Component {
     return (
       <div className="question-details-container" style={style}>
         <QuestionDetails
-          question={openedQuestion}
-          questionAnswered={(result, answeredOptionIndex) => questionAnswered(result, openedQuestion.id, answeredOptionIndex)}
-          onToggleQuestionOpened={(action) => onToggleQuestionOpened(action, openedQuestionIndex)}
+          question={ openedQuestion }
+          questionAnswered={ (result, answeredOptionIndex) => questionAnswered(result, openedQuestion.id, answeredOptionIndex) }
+          onToggleQuestionOpened={ (action) => onToggleQuestionOpened(action, openedQuestionIndex) }
+          onClearQuestionsStatus={ () => clearQuestionsStatus() }
         />
         <AnswerDetails />
       </div>
@@ -64,7 +66,8 @@ const mapStateToProps = ({ questionList: { questions, loading, error }, activeQu
 const mapDispatchToProps = (dispatch) => {
   return {
     questionAnswered: (result, id, answeredOptionIndex) => dispatch(questionAnswered(result, id, answeredOptionIndex)),
-    toggleQuestionOpened: (actionType, id) => dispatch(toggleQuestionOpened(actionType, id))
+    toggleQuestionOpened: (actionType, id) => dispatch(toggleQuestionOpened(actionType, id)),
+    clearQuestionsStatus: () => dispatch(clearQuestionsStatus())
   };
 };
 

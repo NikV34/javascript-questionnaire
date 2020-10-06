@@ -10,7 +10,7 @@ const QuestionTask = ({ task }) => {
   return <span>{ task }</span>;
 }
 
-const QuestionDetails = ({ question, onToggleQuestionOpened, questionAnswered }) => {
+const QuestionDetails = ({ question, onToggleQuestionOpened, questionAnswered, onClearQuestionsStatus }) => {
   const HighlightedQuestionTask = withHighlighting(QuestionTask);
 
   const onAnsweredQuestion = (optionId) => {
@@ -35,6 +35,9 @@ const QuestionDetails = ({ question, onToggleQuestionOpened, questionAnswered })
         </button>
         <button type="button" className="question-details-button" onClick={ onToggleQuestionOpened('next') }>
           <span className="question-details-button-next">Next Question</span>
+        </button>
+        <button type="button" className="question-details-button" onClick={ onClearQuestionsStatus }>
+          <span className="">Reset all</span>
         </button>
       </div>
     </div>

@@ -82,6 +82,12 @@ export const questionAnswered = (result, questionId, answeredOptionIndex) => {
   };
 }
 
+export const clearQuestionsStatus = () => {
+  return {
+    type: 'CLEAR_QUESTIONS_STATUS'
+  }
+}
+
 export const toggleQuestionListNavigation = (actionType) => {
   switch (actionType) {
     case 'start':

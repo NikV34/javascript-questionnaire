@@ -1,4 +1,4 @@
-const updateQuestionStatus = (questions, { questionId, answeredOptionIndex }, status) => {
+const _updateQuestionStatus = (questions, { questionId, answeredOptionIndex }, status) => {
   const question = questions.find(item => item.id === questionId);
   const questionIndex = questions.indexOf(question)
   question.status = status;
@@ -8,6 +8,14 @@ const updateQuestionStatus = (questions, { questionId, answeredOptionIndex }, st
     question,
     ...questions.slice(questionIndex + 1)
   ]
+}
+
+const _clearQuestionsStatus = (questions) => {
+  return questions.map((question) => {
+    question.status = null;
+    question.answeredOptionIndex = null;
+    return question;
+  })
 }
 
 const updateQuestionList = (state, action) => {
@@ -52,13 +60,20 @@ const updateQuestionList = (state, action) => {
     case 'ANSWER_QUESTION_SUCCESS':
       return {
         ...state.questionList,
-        questions: updateQuestionStatus(state.questionList.questions, action.payload, true)
+        questions: _updateQuestionStatus(state.questionList.questions, action.payload, true)
       };
 
     case 'ANSWER_QUESTION_FAILURE':
       return {
         ...state.questionList,
-        questions: updateQuestionStatus(state.questionList.questions, action.payload, false)
+        questions: _updateQuestionStatus(state.questionList.questions, action.payload, false)
+      };
+
+    case 'CLEAR_QUESTIONS_STATUS':
+      return {
+        questions: _clearQuestionsStatus(state.questionList.questions),
+        loading: false,
+        error: null
       };
 
     default:
