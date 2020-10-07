@@ -10,7 +10,7 @@ const QuestionnaireProgress = ({ progress, total }) => {
   return (
     <div className="progress questionnaire-progress">
       <div className="progress-bar questionnaire-progress-bar" role="progressbar" style={ style } aria-valuenow={ progress } aria-valuemin="0"
-            aria-valuemax={ total }>{ `${ Math.floor(progress * 100 / total) }%` }
+            aria-valuemax={ total }>
       </div>
     </div>
   )

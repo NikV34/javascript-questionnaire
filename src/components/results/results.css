@@ -1,7 +1,7 @@
 .page-header {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .page-headline {
@@ -9,14 +9,14 @@
     font-size: 36px;
     line-height: 43px;
     letter-spacing: 0.02em;
-    margin-top: 70px;
-    margin-bottom: 48px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .results {
     display: flex;
     flex-direction: column;
-    margin-top: 70px;
+    margin-bottom: 20px;
 }
 
 .results-headline {
@@ -50,4 +50,17 @@
 .results-score-item .failed {
     font-weight: bold;
     color: #D6596F;
+}
+
+@media (min-width: 768px) {
+    .page-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 70px;
+    }
+
+    .page-headline {
+        margin-bottom: 48px;
+    }
 }

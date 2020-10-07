@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ErrorIndicator from '../error-indicator';
-import QuestionDetails from "../question-details";
-import AnswerDetails from "../answer-details";
-import { toggleQuestionOpened, questionAnswered, clearQuestionsStatus } from "../../actions";
+import QuestionDetails from '../question-details';
+import AnswerDetails from '../answer-details';
+import { toggleQuestionOpened, questionAnswered, clearQuestionsStatus } from '../../actions';
+
+import './question-details-container.css';
 
 class QuestionDetailsContainer extends Component {
 
@@ -39,21 +41,14 @@ class QuestionDetailsContainer extends Component {
       return <ErrorIndicator />;
     }
 
-    const style = {
-      "display": "flex",
-      "flexDirection": "row",
-      "flexGrow": 1
-    }
-
     return (
-      <div className="question-details-container" style={style}>
+      <div className="question-details-container">
         <QuestionDetails
           question={ openedQuestion }
           questionAnswered={ (result, answeredOptionIndex) => questionAnswered(result, openedQuestion.id, answeredOptionIndex) }
           onToggleQuestionOpened={ (action) => onToggleQuestionOpened(action, openedQuestionIndex) }
-          onClearQuestionsStatus={ () => clearQuestionsStatus() }
         />
-        <AnswerDetails />
+        <AnswerDetails onClearQuestionsStatus={ () => clearQuestionsStatus() } />
       </div>
     )
   }

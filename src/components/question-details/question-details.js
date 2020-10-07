@@ -10,7 +10,7 @@ const QuestionTask = ({ task }) => {
   return <span>{ task }</span>;
 }
 
-const QuestionDetails = ({ question, onToggleQuestionOpened, questionAnswered, onClearQuestionsStatus }) => {
+const QuestionDetails = ({ question, onToggleQuestionOpened, questionAnswered }) => {
   const HighlightedQuestionTask = withHighlighting(QuestionTask);
 
   const onAnsweredQuestion = (optionId) => {
@@ -30,14 +30,11 @@ const QuestionDetails = ({ question, onToggleQuestionOpened, questionAnswered, o
       </div>
       <QuestionOptionList question={ question } onAnsweredQuestion={ onAnsweredQuestion }/>
       <div className="question-details-button-group" role="group" aria-label="Basic example">
-        <button type="button" className="question-details-button" onClick={ onToggleQuestionOpened('prev') }>
-          <span className="question-details-button-prev">Previous Question</span>
+        <button type="button" className="question-details-button" onClick={ onToggleQuestionOpened('prev') } >
+          <span className="question-details-button-prev">Previous</span>
         </button>
-        <button type="button" className="question-details-button" onClick={ onToggleQuestionOpened('next') }>
-          <span className="question-details-button-next">Next Question</span>
-        </button>
-        <button type="button" className="question-details-button" onClick={ onClearQuestionsStatus }>
-          <span className="">Reset all</span>
+        <button type="button" className="question-details-button" onClick={ onToggleQuestionOpened('next') } >
+          <span className="question-details-button-next">Next</span>
         </button>
       </div>
     </div>

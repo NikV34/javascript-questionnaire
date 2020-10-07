@@ -1,14 +1,23 @@
+.answer-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
 .answer-details-headline {
     font-size: 24px;
     font-weight: bold;
     line-height: 29px;
     letter-spacing: 0.02em;
-    margin-bottom: 36px;
+    margin-bottom: 0;
 }
 
 .answer-details-explanation {
-    margin-left: 25px;
+    margin-left: 0;
     padding: 20px 19px;
     border-radius: 10px;
-    background-color: #F8F8FA;
+    background-color: #f0f0f0;
+}
+
+@media (min-width: 768px) {
 }

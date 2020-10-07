@@ -1,5 +1,7 @@
 import { arrayOf, func, shape, number, string, bool } from 'prop-types';
 
+export const answerQuestionId = number;
+
 export const className = string.isRequired;
 
 export const disabled = bool.isRequired;
