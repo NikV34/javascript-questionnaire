@@ -7,11 +7,11 @@ import { withMarkdown } from '../hoc';
 import './answer-details.css';
 
 const QuestionAnswer = ({ answer }) => {
-  return <h2 className="answer-details-headline">Right Answer: {answer + 1}</h2>
+  return <h2 className="answer-details-headline">Right Answer: #{answer + 1}</h2>
 }
 
 const QuestionExplanation = ({ explanation }) => {
-  return <div className="answer-details-explanation">{ withMarkdown(explanation) }</div>
+  return <div className="answer-details-explanation">{withMarkdown(explanation)}</div>
 }
 
 const AnswerDetails = ({ questions, questionId, onClearQuestionsStatus }) => {
@@ -23,8 +23,8 @@ const AnswerDetails = ({ questions, questionId, onClearQuestionsStatus }) => {
       <div className="answer-details">
         <div className="answer-details-header">
           <QuestionAnswer answer={openedQuestion.answer} />
-          <button type="button" className="question-details-button" onClick={ onClearQuestionsStatus } title="All your progress will be cleared">
-              <span className="">Reset all</span>
+          <button type="button" className="question-details-button" onClick={onClearQuestionsStatus} title="All your progress will be cleared">
+            <span className="">Reset all</span>
           </button>
         </div>
         <QuestionExplanation explanation={openedQuestion.explanation} />
@@ -35,8 +35,8 @@ const AnswerDetails = ({ questions, questionId, onClearQuestionsStatus }) => {
 }
 
 const mapStateToProps = ({
-                           questionList: { questions, loading, error },
-                           activeQuestion: { questionId } }) => {
+  questionList: { questions, loading, error },
+  activeQuestion: { questionId } }) => {
   return {
     questions,
     loading,
