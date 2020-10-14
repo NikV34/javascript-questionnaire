@@ -1,3 +1,4 @@
+import store from 'store';
 
 const _questionListTransform = (questions) => {
   return questions.map((question) => {
@@ -14,6 +15,7 @@ const questionsRequested = () => {
 };
 
 const questionsLoaded = (newQuestions) => {
+  store.set("questionsStored", true);
   return {
     type: 'FETCH_QUESTIONS_SUCCESS',
     payload: _questionListTransform(newQuestions)

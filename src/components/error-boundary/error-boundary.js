@@ -1,20 +1,19 @@
-import React, { Component }from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import ErrorIndicator from '../error-indicator';
 
-export default class ErrorBoundary extends Component {
-  state = {
-    hasError: false
+const ErrorBoundary = ({ error, children }) => {
+
+  if (error) {
+    return <ErrorIndicator />;
   }
 
-  componentDidCatch(error, errorInfo) {
-    this.setState({hasError: true})
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return <ErrorIndicator />;
-    }
-
-    return this.props.children;
-  }
+  return children;
 }
+
+
+const mapStateToProps = ({ questionList: { error } }) => {
+  return { error };
+}
+
+export default connect(mapStateToProps)(ErrorBoundary);

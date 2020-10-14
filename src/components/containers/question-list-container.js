@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import store from 'store';
 
 import Spinner from '../spinner';
@@ -16,7 +16,7 @@ class QuestionListContainer extends Component {
       if (value.hasOwnProperty('question'))
         questions.push(value);
     })
-    questions.sort((a, b) => { return a.id - b.id});
+    questions.sort((a, b) => { return a.id - b.id });
     return questions
   }
 
@@ -25,7 +25,6 @@ class QuestionListContainer extends Component {
       this.props.questionsFromLocalStorage(this.localStorageQuestions());
     } else {
       this.props.fetchQuestions();
-      store.set("questionsStored", true);
     }
   }
 
@@ -49,16 +48,17 @@ class QuestionListContainer extends Component {
     const openedQuestionId = (!questionId && questions.length !== 0) ? questions[0].id : questionId;
 
     return (
-      <QuestionList pagination={pagination}
-                    questions={questions}
-                    openedQuestionId={openedQuestionId}
-                    onOpenedQuestion={onOpenedQuestion} 
-                    onToggleQuestionListNavigation={onToggleQuestionListNavigation}/>
+      <QuestionList
+        pagination={pagination}
+        questions={questions}
+        openedQuestionId={openedQuestionId}
+        onOpenedQuestion={onOpenedQuestion}
+        onToggleQuestionListNavigation={onToggleQuestionListNavigation} />
     );
   };
 }
 
-const mapStateToProps = ({ questionList: { questions, loading, error }, activeQuestion: { questionId }, pagination }) => { 
+const mapStateToProps = ({ questionList: { questions, loading, error }, activeQuestion: { questionId }, pagination }) => {
   return { loading, error, questions, pagination, questionId };
 }
 
