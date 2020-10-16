@@ -33,6 +33,7 @@ const questionsRequested = () => {
 
 const questionsLoaded = (newQuestions) => {
   store.set("questionsStored", true);
+
   return {
     type: actionsType.FETCH_QUESTIONS_SUCCESS,
     payload: _questionListTransform(newQuestions)
@@ -53,7 +54,7 @@ export const questionsFromLocalStorage = (questions) => {
   };
 };
 
-const fetchQuestions = (questionnaireService, dispatch) => () => {
+export const fetchQuestions = (questionnaireService, dispatch) => () => {
   dispatch(questionsRequested());
   questionnaireService.getAllQuestions()
     .then((data) => dispatch(questionsLoaded(data)))
@@ -68,38 +69,27 @@ export const questionOpened = (questionId) => {
 };
 
 export const toggleQuestionOpened = (role, currentQuestionIndex) => {
-  if (role === 'prev') {
-    return {
-      type: actionsType.OPEN_PREV_QUESTION,
-      payload: currentQuestionIndex
-    };
-  }
-  if (role === 'next') {
-    return {
-      type: actionsType.OPEN_NEXT_QUESTION,
-      payload: currentQuestionIndex
-    };
-  }
+  let type = '';
+  if (role === 'prev') type = actionsType.OPEN_PREV_QUESTION;
+  if (role === 'next') type = actionsType.OPEN_NEXT_QUESTION;
+
+  return {
+    type,
+    payload: currentQuestionIndex
+  };
 };
 
 export const questionAnswered = (result, questionId, answeredOptionIndex) => {
-  if (result) {
-    return {
-      type: actionsType.ANSWER_QUESTION_SUCCESS,
-      payload: {
-        questionId: questionId,
-        answeredOptionIndex: answeredOptionIndex
-      }
-    };
-  }
+  const type = result ? actionsType.ANSWER_QUESTION_SUCCESS : actionsType.ANSWER_QUESTION_FAILURE;
+
   return {
-    type: actionsType.ANSWER_QUESTION_FAILURE,
+    type,
     payload: {
-      questionId: questionId,
-      answeredOptionIndex: answeredOptionIndex
+      questionId,
+      answeredOptionIndex
     }
   };
-}
+};
 
 export const clearQuestionsStatus = () => {
   return {
@@ -120,8 +110,4 @@ export const toggleQuestionListNavigation = (role) => {
     default:
       return { type: actionsType.TOGGLE_START_NAVIGATION };
   }
-};
-
-export {
-  fetchQuestions
 };
