@@ -1,34 +1,14 @@
 import { actionsType } from '../actions/index';
 
-const _updateQuestionStatus = (questions, { questionId, answeredOptionIndex }, status) => {
-  const question = questions.find(item => item.id === questionId);
-  const questionIndex = questions.indexOf(question)
-  question.status = status;
-  question.answeredOptionIndex = answeredOptionIndex;
-  return [
-    ...questions.slice(0, questionIndex),
-    question,
-    ...questions.slice(questionIndex + 1)
-  ]
-}
+const questionList = (state, action) => {
 
-const _clearQuestionsStatus = (questions) => {
-  return questions.map((question) => {
-    question.status = null;
-    question.answeredOptionIndex = null;
-    return question;
-  })
-}
+  const initialQuestionList = {
+    questions: [],
+    loading: true,
+    error: null
+  };
 
-const updateQuestionList = (state, action) => {
-
-  if (state === undefined) {
-    return {
-      questions: [],
-      loading: true,
-      error: null
-    }
-  }
+  if (state === undefined) return initialQuestionList;
 
   switch (action.type) {
     case actionsType.FETCH_QUESTIONS_REQUEST:
@@ -79,8 +59,29 @@ const updateQuestionList = (state, action) => {
       };
 
     default:
-      return state.questionList
-  }
+      if (state.questionList === undefined) return initialQuestionList;
+      return { ...state.questionList };
+  };
 };
 
-export default updateQuestionList;
+const _updateQuestionStatus = (questions, { questionId, answeredOptionIndex }, status) => {
+  const question = questions.find(item => item.id === questionId);
+  const questionIndex = questions.indexOf(question);
+  question.status = status;
+  question.answeredOptionIndex = answeredOptionIndex;
+  return [
+    ...questions.slice(0, questionIndex),
+    question,
+    ...questions.slice(questionIndex + 1)
+  ];
+};
+
+const _clearQuestionsStatus = (questions) => {
+  return questions.map((question) => {
+    question.status = null;
+    question.answeredOptionIndex = null;
+    return question;
+  });
+};
+
+export default questionList;
