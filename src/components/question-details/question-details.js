@@ -10,17 +10,8 @@ const QuestionTask = ({ task }) => {
   return <span>{task}</span>;
 }
 
-const QuestionDetails = ({ question, onToggleQuestionOpened, questionAnswered }) => {
+const QuestionDetails = ({ question, onToggleQuestionOpened }) => {
   const HighlightedQuestionTask = withHighlighting(QuestionTask);
-
-  const onAnsweredQuestion = (optionId) => {
-    //optionId != index
-    if (optionId === question.answer + 1) {
-      questionAnswered(true, optionId - 1)
-    } else {
-      questionAnswered(false, optionId - 1)
-    }
-  }
 
   return (
     <div className="question-details">
@@ -28,7 +19,7 @@ const QuestionDetails = ({ question, onToggleQuestionOpened, questionAnswered })
       <div className="question-details-task">
         <HighlightedQuestionTask task={question.task} />
       </div>
-      <QuestionOptionList question={question} onAnsweredQuestion={onAnsweredQuestion} />
+      <QuestionOptionList />
       <div className="question-details-button-group" role="group" aria-label="Basic example">
         <button type="button" className="question-details-button" onClick={onToggleQuestionOpened('prev')} >
           <span className="question-details-button-prev">Previous</span>
@@ -43,8 +34,7 @@ const QuestionDetails = ({ question, onToggleQuestionOpened, questionAnswered })
 
 QuestionDetails.propTypes = {
   question: question.isRequired,
-  onToggleQuestionOpened: funcRequired,
-  questionAnswered: funcRequired
+  onToggleQuestionOpened: funcRequired
 };
 
 
