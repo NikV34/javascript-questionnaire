@@ -67,16 +67,16 @@ export const questionOpened = (questionId) => {
   };
 };
 
-export const toggleQuestionOpened = (actionType, currentQuestionIndex) => {
-  if (actionType === 'prev') {
+export const toggleQuestionOpened = (role, currentQuestionIndex) => {
+  if (role === 'prev') {
     return {
-      type: actionType.OPEN_PREV_QUESTION,
+      type: actionsType.OPEN_PREV_QUESTION,
       payload: currentQuestionIndex
     };
   }
-  if (actionType === 'next') {
+  if (role === 'next') {
     return {
-      type: actionType.OPEN_NEXT_QUESTION,
+      type: actionsType.OPEN_NEXT_QUESTION,
       payload: currentQuestionIndex
     };
   }
@@ -107,18 +107,18 @@ export const clearQuestionsStatus = () => {
   }
 }
 
-export const toggleQuestionListNavigation = (actionType) => {
-  switch (actionType) {
+export const toggleQuestionListNavigation = (role) => {
+  switch (role) {
     case 'start':
-      return { type: actionType.TOGGLE_START_NAVIGATION };
+      return { type: actionsType.TOGGLE_START_NAVIGATION };
     case 'prev':
-      return { type: actionType.TOGGLE_PREV_NAVIGATION };
+      return { type: actionsType.TOGGLE_PREV_NAVIGATION };
     case 'next':
-      return { type: actionType.TOGGLE_NEXT_NAVIGATION };
+      return { type: actionsType.TOGGLE_NEXT_NAVIGATION };
     case 'end':
-      return { type: actionType.TOGGLE_END_NAVIGATION };
+      return { type: actionsType.TOGGLE_END_NAVIGATION };
     default:
-      return { type: actionType.TOGGLE_START_NAVIGATION };
+      return { type: actionsType.TOGGLE_START_NAVIGATION };
   }
 };
 
