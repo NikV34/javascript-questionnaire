@@ -1,5 +1,22 @@
 import store from 'store';
 
+export const actionsType = {
+  FETCH_QUESTIONS_REQUEST: 'FETCH_QUESTIONS_REQUEST',
+  FETCH_QUESTIONS_SUCCESS: 'FETCH_QUESTIONS_SUCCESS',
+  FETCH_QUESTIONS_FAILURE: 'FETCH_QUESTIONS_FAILURE',
+  FETCH_QUESTIONS_FROM_STORAGE_SUCCESS: 'FETCH_QUESTIONS_FROM_STORAGE_SUCCESS',
+  OPEN_QUESTION: 'OPEN_QUESTION',
+  OPEN_PREV_QUESTION: 'OPEN_PREV_QUESTION',
+  OPEN_NEXT_QUESTION: 'OPEN_NEXT_QUESTION',
+  ANSWER_QUESTION_SUCCESS: 'ANSWER_QUESTION_SUCCESS',
+  ANSWER_QUESTION_FAILURE: 'ANSWER_QUESTION_FAILURE',
+  CLEAR_QUESTIONS_STATUS: 'CLEAR_QUESTIONS_STATUS',
+  TOGGLE_START_NAVIGATION: 'TOGGLE_START_NAVIGATION',
+  TOGGLE_PREV_NAVIGATION: 'TOGGLE_PREV_NAVIGATION',
+  TOGGLE_NEXT_NAVIGATION: 'TOGGLE_NEXT_NAVIGATION',
+  TOGGLE_END_NAVIGATION: 'TOGGLE_END_NAVIGATION',
+}
+
 const _questionListTransform = (questions) => {
   return questions.map((question) => {
     question.status = null;
@@ -10,28 +27,28 @@ const _questionListTransform = (questions) => {
 
 const questionsRequested = () => {
   return {
-    type: 'FETCH_QUESTIONS_REQUEST'
+    type: actionsType.FETCH_QUESTIONS_REQUEST
   }
 };
 
 const questionsLoaded = (newQuestions) => {
   store.set("questionsStored", true);
   return {
-    type: 'FETCH_QUESTIONS_SUCCESS',
+    type: actionsType.FETCH_QUESTIONS_SUCCESS,
     payload: _questionListTransform(newQuestions)
   };
 };
 
 const questionsError = (error) => {
   return {
-    type: 'FETCH_QUESTIONS_FAILURE',
+    type: actionsType.FETCH_QUESTIONS_FAILURE,
     payload: error
   };
 };
 
 export const questionsFromLocalStorage = (questions) => {
   return {
-    type: 'FETCH_QUESTIONS_FROM_STORAGE_SUCCESS',
+    type: actionsType.FETCH_QUESTIONS_FROM_STORAGE_SUCCESS,
     payload: questions
   };
 };
@@ -45,7 +62,7 @@ const fetchQuestions = (questionnaireService, dispatch) => () => {
 
 export const questionOpened = (questionId) => {
   return {
-    type: 'OPEN_QUESTION',
+    type: actionsType.OPEN_QUESTION,
     payload: questionId
   };
 };
@@ -53,13 +70,13 @@ export const questionOpened = (questionId) => {
 export const toggleQuestionOpened = (actionType, currentQuestionIndex) => {
   if (actionType === 'prev') {
     return {
-      type: 'OPEN_PREV_QUESTION',
+      type: actionType.OPEN_PREV_QUESTION,
       payload: currentQuestionIndex
     };
   }
   if (actionType === 'next') {
     return {
-      type: 'OPEN_NEXT_QUESTION',
+      type: actionType.OPEN_NEXT_QUESTION,
       payload: currentQuestionIndex
     };
   }
@@ -68,7 +85,7 @@ export const toggleQuestionOpened = (actionType, currentQuestionIndex) => {
 export const questionAnswered = (result, questionId, answeredOptionIndex) => {
   if (result) {
     return {
-      type: 'ANSWER_QUESTION_SUCCESS',
+      type: actionsType.ANSWER_QUESTION_SUCCESS,
       payload: {
         questionId: questionId,
         answeredOptionIndex: answeredOptionIndex
@@ -76,7 +93,7 @@ export const questionAnswered = (result, questionId, answeredOptionIndex) => {
     };
   }
   return {
-    type: 'ANSWER_QUESTION_FAILURE',
+    type: actionsType.ANSWER_QUESTION_FAILURE,
     payload: {
       questionId: questionId,
       answeredOptionIndex: answeredOptionIndex
@@ -86,22 +103,22 @@ export const questionAnswered = (result, questionId, answeredOptionIndex) => {
 
 export const clearQuestionsStatus = () => {
   return {
-    type: 'CLEAR_QUESTIONS_STATUS'
+    type: actionsType.CLEAR_QUESTIONS_STATUS
   }
 }
 
 export const toggleQuestionListNavigation = (actionType) => {
   switch (actionType) {
     case 'start':
-      return { type: 'TOGGLE_START_NAVIGATION' };
+      return { type: actionType.TOGGLE_START_NAVIGATION };
     case 'prev':
-      return { type: 'TOGGLE_PREV_NAVIGATION' };
+      return { type: actionType.TOGGLE_PREV_NAVIGATION };
     case 'next':
-      return { type: 'TOGGLE_NEXT_NAVIGATION' };
+      return { type: actionType.TOGGLE_NEXT_NAVIGATION };
     case 'end':
-      return { type: 'TOGGLE_END_NAVIGATION' };
+      return { type: actionType.TOGGLE_END_NAVIGATION };
     default:
-      return { type: 'TOGGLE_START_NAVIGATION' };
+      return { type: actionType.TOGGLE_START_NAVIGATION };
   }
 };
 

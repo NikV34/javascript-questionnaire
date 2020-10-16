@@ -1,3 +1,5 @@
+import { actionsType } from '../actions/index';
+
 const _updateQuestionStatus = (questions, { questionId, answeredOptionIndex }, status) => {
   const question = questions.find(item => item.id === questionId);
   const questionIndex = questions.indexOf(question)
@@ -29,47 +31,47 @@ const updateQuestionList = (state, action) => {
   }
 
   switch (action.type) {
-    case 'FETCH_QUESTIONS_REQUEST':
+    case actionsType.FETCH_QUESTIONS_REQUEST:
       return {
         questions: [],
         loading: true,
         error: null
       };
 
-    case 'FETCH_QUESTIONS_SUCCESS':
+    case actionsType.FETCH_QUESTIONS_SUCCESS:
       return {
         questions: action.payload,
         loading: false,
         error: null
       };
 
-    case 'FETCH_QUESTIONS_FAILURE':
+    case actionsType.FETCH_QUESTIONS_FAILURE:
       return {
         questions: [],
         loading: false,
         error: action.payload
       };
 
-    case 'FETCH_QUESTIONS_FROM_STORAGE_SUCCESS':
+    case actionsType.FETCH_QUESTIONS_FROM_STORAGE_SUCCESS:
       return {
         questions: action.payload,
         loading: false,
         error: null
       };
 
-    case 'ANSWER_QUESTION_SUCCESS':
+    case actionsType.ANSWER_QUESTION_SUCCESS:
       return {
         ...state.questionList,
         questions: _updateQuestionStatus(state.questionList.questions, action.payload, true)
       };
 
-    case 'ANSWER_QUESTION_FAILURE':
+    case actionsType.ANSWER_QUESTION_FAILURE:
       return {
         ...state.questionList,
         questions: _updateQuestionStatus(state.questionList.questions, action.payload, false)
       };
 
-    case 'CLEAR_QUESTIONS_STATUS':
+    case actionsType.CLEAR_QUESTIONS_STATUS:
       return {
         questions: _clearQuestionsStatus(state.questionList.questions),
         loading: false,

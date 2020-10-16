@@ -1,3 +1,5 @@
+import { actionsType } from '../actions/index';
+
 const updateActiveQuestion = (state, action) => {
 
   if (state === undefined) {
@@ -8,7 +10,7 @@ const updateActiveQuestion = (state, action) => {
 
   switch (action.type) {
 
-    case 'OPEN_QUESTION':
+    case actionsType.OPEN_QUESTION:
       let newActiveQuestion = {...state.activeQuestion};
       newActiveQuestion.questionId = action.payload;
       return {

@@ -1,3 +1,4 @@
+import { actionsType } from '../actions/index';
 
 const togglePrevQuestionList = (page) => {
   if (!page) {
@@ -24,20 +25,20 @@ const updatePagination = (state, action) => {
 
   switch (action.type) {
     
-    case 'TOGGLE_START_NAVIGATION':
+    case actionsType.TOGGLE_START_NAVIGATION:
       return {
         ...state.pagination,
         page: 0,
       }
 
-    case 'TOGGLE_PREV_NAVIGATION':
+    case actionsType.TOGGLE_PREV_NAVIGATION:
       return {
         ...state.pagination,
         page: togglePrevQuestionList(state.pagination.page),
         totalItems: state.questionList.questions.length
       }
 
-    case 'TOGGLE_NEXT_NAVIGATION':
+    case actionsType.TOGGLE_NEXT_NAVIGATION:
       const totalItems = state.questionList.questions.length;
       return {
         ...state.pagination,
@@ -45,7 +46,7 @@ const updatePagination = (state, action) => {
         totalItems: totalItems
       }
 
-    case 'TOGGLE_END_NAVIGATION':
+    case actionsType.TOGGLE_END_NAVIGATION:
     return {
       ...state.pagination,
       page: Math.floor(state.questionList.questions.length / state.pagination.size),
