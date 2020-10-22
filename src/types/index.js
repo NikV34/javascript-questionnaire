@@ -6,11 +6,9 @@ export const className = string.isRequired;
 
 export const disabled = bool.isRequired;
 
-export const error = bool.isRequired;
+export const error = bool;
 
-export const loading = bool.isRequired;
-
-export const id = number.isRequired;
+export const loading = bool;
 
 export const navigationButtonRole = string.isRequired;
 

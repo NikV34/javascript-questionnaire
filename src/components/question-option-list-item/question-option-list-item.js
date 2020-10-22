@@ -1,5 +1,7 @@
 import React from 'react';
-import { questionOption, id, funcRequired, questionOptionStatus, disabled } from '../../types';
+import { number } from 'prop-types';
+
+import { questionOption, funcRequired, questionOptionStatus, disabled } from '../../types';
 import withMarkdown from '../hoc/with-markdown';
 
 import './question-option-list-item.css';
@@ -31,7 +33,7 @@ const QuestionOptionListItem = ({ option, id, onAnsweredQuestion, optionStatus, 
 
 QuestionOptionListItem.propTypes = {
   option: questionOption,
-  id: id,
+  id: number,
   onAnsweredQuestion: funcRequired,
   optionStatus: questionOptionStatus,
   disabled: disabled

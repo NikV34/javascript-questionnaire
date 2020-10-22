@@ -1,23 +1,18 @@
 import React from 'react';
 import { question, funcRequired } from '../../types';
 
-import withHighlighting from '../hoc/with-highlighting';
+import Highlighted from '../hoc/with-highlighting';
 import QuestionOptionList from '../question-option-list';
 
 import './question-details.css';
 
-const QuestionTask = ({ task }) => {
-  return <span>{task}</span>;
-}
 
 const QuestionDetails = ({ question, onToggleQuestionOpened }) => {
-  const HighlightedQuestionTask = withHighlighting(QuestionTask);
-
   return (
     <div className="question-details">
       <h2 className="question-details-headline">{`${question.id}. ${question.question}`}</h2>
       <div className="question-details-task">
-        <HighlightedQuestionTask task={question.task} />
+        <Highlighted task={question.task} />
       </div>
       <QuestionOptionList />
       <div className="question-details-button-group" role="group" aria-label="Basic example">

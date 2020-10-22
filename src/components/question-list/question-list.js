@@ -1,5 +1,6 @@
 import React from 'react';
-import { questions, pagination, funcRequired, id } from '../../types';
+import { number } from 'prop-types';
+import { questions, pagination, funcRequired } from '../../types';
 
 import QuestionListNavigation from '../question-list-navigation';
 import QuestionListItem from '../question-list-item';
@@ -8,7 +9,7 @@ import './question-list.css';
 
 const renderItems = (questionList, pagination, openedQuestionId, onOpenedQuestion) => {
   return questionList
-    .slice(pagination.page * pagination.size , pagination.page * pagination.size + pagination.size)
+    .slice(pagination.page * pagination.size, pagination.page * pagination.size + pagination.size)
     .map((question) => {
       let className = 'question-list-item-button';
       if (question.id === openedQuestionId) {
@@ -22,10 +23,10 @@ const renderItems = (questionList, pagination, openedQuestionId, onOpenedQuestio
       }
       return (
         <QuestionListItem
-            className={ className }
-            key={ question.id.toString() }
-            question={ question }
-            onOpenedQuestion={ () => onOpenedQuestion(question.id) } />
+          className={className}
+          key={question.id.toString()}
+          question={question}
+          onOpenedQuestion={() => onOpenedQuestion(question.id)} />
       )
     })
 }
@@ -33,27 +34,27 @@ const renderItems = (questionList, pagination, openedQuestionId, onOpenedQuestio
 const QuestionList = ({ questions, pagination, openedQuestionId, onOpenedQuestion, onToggleQuestionListNavigation }) => {
   return (
     <div className="question-list-container">
-      <QuestionnaireProgressContainer questions={ questions }/>
+      <QuestionnaireProgressContainer questions={questions} />
       <div className="question-list" role="group" aria-label="Question number group">
-      <QuestionListNavigation
+        <QuestionListNavigation
           btnRole="start"
-          disabled={ !pagination.page }
-          onToggleQuestionListNavigation={ () => onToggleQuestionListNavigation('start') }
+          disabled={!pagination.page}
+          onToggleQuestionListNavigation={() => onToggleQuestionListNavigation('start')}
         />
         <QuestionListNavigation
           btnRole="prev"
-          disabled={ !pagination.page }
-          onToggleQuestionListNavigation={ () => onToggleQuestionListNavigation('prev') }
+          disabled={!pagination.page}
+          onToggleQuestionListNavigation={() => onToggleQuestionListNavigation('prev')}
         />
-        { renderItems(questions, pagination, openedQuestionId, onOpenedQuestion) }
+        {renderItems(questions, pagination, openedQuestionId, onOpenedQuestion)}
         <QuestionListNavigation
           btnRole="next"
-          disabled={ pagination.page >= Math.floor(pagination.totalItems / pagination.size) }
-          onToggleQuestionListNavigation={ () => onToggleQuestionListNavigation('next') } />
+          disabled={pagination.page >= Math.floor(pagination.totalItems / pagination.size)}
+          onToggleQuestionListNavigation={() => onToggleQuestionListNavigation('next')} />
         <QuestionListNavigation
-        btnRole="end"
-        disabled={ pagination.page >= Math.floor(pagination.totalItems / pagination.size) }
-        onToggleQuestionListNavigation={ () => onToggleQuestionListNavigation('end') } />
+          btnRole="end"
+          disabled={pagination.page >= Math.floor(pagination.totalItems / pagination.size)}
+          onToggleQuestionListNavigation={() => onToggleQuestionListNavigation('end')} />
       </div>
     </div>
   )
@@ -62,7 +63,7 @@ const QuestionList = ({ questions, pagination, openedQuestionId, onOpenedQuestio
 QuestionList.propTypes = {
   questionList: questions,
   pagination: pagination,
-  openedQuestionId: id,
+  openedQuestionId: number,
   onOpenedQuestion: funcRequired
 }
 

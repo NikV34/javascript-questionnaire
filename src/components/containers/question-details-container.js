@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { number } from 'prop-types';
 
 import ErrorIndicator from '../error-indicator';
 import QuestionDetails from '../question-details';
 import AnswerDetails from '../answer-details';
 import { toggleQuestionOpened, clearQuestionsStatus } from '../../actions';
-import { loading, error, funcRequired, id, questions } from '../../types';
+import { loading, error, funcRequired, questions } from '../../types';
+
 
 import './question-details-container.css';
 
@@ -36,7 +38,7 @@ QuestionDetailsContainer.propTypes = {
   questions: questions,
   loading: loading,
   error: error,
-  questionId: id,
+  questionId: number,
   toggleQuestionOpened: funcRequired,
   clearQuestionsStatus: funcRequired
 };

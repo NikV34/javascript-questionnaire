@@ -67,8 +67,10 @@ const questionList = (state, action) => {
 const _updateQuestionStatus = (questions, { questionId, answeredOptionIndex }, status) => {
   const question = questions.find(item => item.id === questionId);
   const questionIndex = questions.indexOf(question);
+
   question.status = status;
   question.answeredOptionIndex = answeredOptionIndex;
+
   return [
     ...questions.slice(0, questionIndex),
     question,
