@@ -14,13 +14,14 @@ const activeQuestion = (state, action) => {
 
     case actionsType.OPEN_NEXT_QUESTION:
       const curIndex = action.payload;
-      if (curIndex === state.questionList.questions.length - 1) return { ...state.activeQuestion };
+      if (curIndex === state.questionList.questions.length - 1)
+        return { ...state.activeQuestion };
       return { questionId: state.questionList.questions[curIndex + 1].id };
 
     default:
       if (state.activeQuestion === undefined) return { questionId: null };
       return state.activeQuestion;
-  };
+  }
 };
 
 export default activeQuestion;

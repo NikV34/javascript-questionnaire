@@ -1,47 +1,37 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { answerQuestionId, questions, funcRequired } from '../../types';
-
-import { withMarkdown } from '../hoc';
+import PropTypes from 'prop-types';
 
 import './answer-details.css';
 
-const AnswerDetails = ({ questions, questionId, onClearQuestionsStatus }) => {
-  const openedQuestionId = (!questionId && questions.length !== 0) ? questions[0].id : questionId;
-  const openedQuestion = questions.find((question) => question.id === openedQuestionId);
-
-  if (openedQuestion.status !== null) {
-    return (
-      <div className="answer-details">
-        <div className="answer-details-header">
-          <h2 className="answer-details-headline">Right Answer: #{openedQuestion.answer + 1}</h2>
-          <button type="button" className="question-details-button" onClick={onClearQuestionsStatus} title="All your progress will be cleared">
-            <span>Reset all</span>
-          </button>
-        </div>
-        <div className="answer-details-explanation">{withMarkdown(openedQuestion.explanation)}</div>
+const AnswerDetails = ({ answer, explanation, onClearQuestionsStatus }) => {
+  return (
+    <div className="answer-details">
+      <div className="answer-details-header">
+        <h2 className="answer-details-headline">Right Answer: #{answer + 1}</h2>
+        <button
+          type="button"
+          className="question-details-button"
+          onClick={onClearQuestionsStatus}
+          title="All your progress will be cleared"
+        >
+          <span>Reset all</span>
+        </button>
       </div>
-    )
-  }
-
-  return null
-}
-
-const mapStateToProps = ({
-  questionList: { questions, loading, error },
-  activeQuestion: { questionId } }) => {
-  return {
-    questions,
-    loading,
-    error,
-    questionId
-  }
-}
+      <div className="answer-details-explanation">{explanation}</div>
+    </div>
+  );
+};
 
 AnswerDetails.propTypes = {
-  questions: questions,
-  questionId: answerQuestionId,
-  onClearQuestionsStatus: funcRequired
-}
+  answer: PropTypes.number,
+  explanation: PropTypes.element,
+  onClearQuestionsStatus: PropTypes.func,
+};
 
-export default connect(mapStateToProps)(AnswerDetails);
+AnswerDetails.defaultProps = {
+  answer: null,
+  explanation: null,
+  onClearQuestionsStatus: null,
+};
+
+export default AnswerDetails;

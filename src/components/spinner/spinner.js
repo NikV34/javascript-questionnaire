@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './spinner.css'
+import './spinner.css';
 
 const Spinner = () => {
   return (
@@ -9,7 +9,7 @@ const Spinner = () => {
         <span className="sr-only">Loading...</span>
       </div>
     </div>
-  )
+  );
 };
 
 export default Spinner;

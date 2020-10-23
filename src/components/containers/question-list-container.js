@@ -5,23 +5,28 @@ import store from 'store';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 import QuestionList from '../question-list/question-list';
-import { fetchQuestions, questionsFromLocalStorage, questionOpened, toggleQuestionListNavigation } from '../../actions';
+import {
+  fetchQuestions,
+  questionsFromLocalStorage,
+  questionOpened,
+  toggleQuestionListNavigation,
+} from '../../actions';
 import { withQuestionnaireService } from '../hoc';
 
 class QuestionListContainer extends Component {
-
   localStorageQuestions = () => {
-    let questions = [];
+    const questions = [];
     store.each((value, key) => {
-      if (value.hasOwnProperty('question'))
-        questions.push(value);
-    })
-    questions.sort((a, b) => { return a.id - b.id });
-    return questions
-  }
+      if (value.hasOwnProperty('question')) questions.push(value);
+    });
+    questions.sort((a, b) => {
+      return a.id - b.id;
+    });
+    return questions;
+  };
 
   componentDidMount() {
-    if (store.get("questionsStored")) {
+    if (store.get('questionsStored')) {
       this.props.questionsFromLocalStorage(this.localStorageQuestions());
     } else {
       this.props.fetchQuestions();
@@ -29,13 +34,26 @@ class QuestionListContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.questions !== prevProps.questions && this.props.questions.length) {
-      this.props.questions.map(item => store.set(`questionId${item.id}`, item));
+    if (
+      this.props.questions !== prevProps.questions &&
+      this.props.questions.length
+    ) {
+      this.props.questions.map((item) =>
+        store.set(`questionId${item.id}`, item)
+      );
     }
-  };
+  }
 
   render() {
-    const { questions, loading, error, pagination, questionId, onOpenedQuestion, onToggleQuestionListNavigation } = this.props;
+    const {
+      questions,
+      loading,
+      error,
+      pagination,
+      questionId,
+      onOpenedQuestion,
+      onToggleQuestionListNavigation,
+    } = this.props;
 
     if (loading) {
       return <Spinner />;
@@ -45,7 +63,8 @@ class QuestionListContainer extends Component {
       return <ErrorIndicator />;
     }
 
-    const openedQuestionId = (!questionId && questions.length !== 0) ? questions[0].id : questionId;
+    const openedQuestionId =
+      !questionId && questions.length !== 0 ? questions[0].id : questionId;
 
     return (
       <QuestionList
@@ -53,22 +72,31 @@ class QuestionListContainer extends Component {
         questions={questions}
         openedQuestionId={openedQuestionId}
         onOpenedQuestion={onOpenedQuestion}
-        onToggleQuestionListNavigation={onToggleQuestionListNavigation} />
+        onToggleQuestionListNavigation={onToggleQuestionListNavigation}
+      />
     );
-  };
+  }
 }
 
-const mapStateToProps = ({ questionList: { questions, loading, error }, activeQuestion: { questionId }, pagination }) => {
+const mapStateToProps = ({
+  questionList: { questions, loading, error },
+  activeQuestion: { questionId },
+  pagination,
+}) => {
   return { loading, error, questions, pagination, questionId };
-}
+};
 
 const mapDispatchToProps = (dispatch, { questionnaireService }) => {
   return {
     fetchQuestions: fetchQuestions(questionnaireService, dispatch),
     onOpenedQuestion: (id) => dispatch(questionOpened(id)),
-    questionsFromLocalStorage: (questions) => dispatch(questionsFromLocalStorage(questions)),
-    onToggleQuestionListNavigation: (action) => dispatch(toggleQuestionListNavigation(action))
+    questionsFromLocalStorage: (questions) =>
+      dispatch(questionsFromLocalStorage(questions)),
+    onToggleQuestionListNavigation: (action) =>
+      dispatch(toggleQuestionListNavigation(action)),
   };
 };
 
-export default withQuestionnaireService()(connect(mapStateToProps, mapDispatchToProps)(QuestionListContainer));
+export default withQuestionnaireService()(
+  connect(mapStateToProps, mapDispatchToProps)(QuestionListContainer)
+);

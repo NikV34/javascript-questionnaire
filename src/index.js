@@ -17,8 +17,9 @@ ReactDOM.render(
   <Provider store={store}>
     <ErrorBoundary>
       <QuestionnaireServiceProvider value={questionnaireService}>
-          <App />
+        <App />
       </QuestionnaireServiceProvider>
     </ErrorBoundary>
   </Provider>,
-  document.getElementById('root'));
+  document.getElementById('root')
+);

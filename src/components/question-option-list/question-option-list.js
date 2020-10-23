@@ -1,61 +1,33 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { questionAnswered } from '../../actions';
-import { question, funcRequired } from '../../types';
+import PropTypes from 'prop-types';
 
 import QuestionOptionListItem from '../question-option-list-item';
 
 import './question-option-list.css';
 
-const QuestionOptionList = ({ question, questionAnswered }) => {
-
-  const onAnsweredQuestion = (optionId) => {
-    //optionId !== index
-    const result = optionId === question.answer + 1 ? true : false
-    return questionAnswered(result, question.id, optionId - 1)
-  }
-
+const QuestionOptionList = ({ optionList, disabled, func }) => {
   return (
     <div className="question-option-list">
-      { question.option_list.map((option, idx) => {
-        let optionStatus = null;
-        if (idx === question.answeredOptionIndex && question.status === false) optionStatus = false;
-        if (idx === question.answer && question.status !== null) optionStatus = true;
-
-        const disabled = question.status !== null;
-
+      {optionList.map(({ number, content, className }) => {
         return (
           <QuestionOptionListItem
-            option={option}
-            id={idx + 1}
-            key={`${question.id}-${idx + 1}`}
-            status={question.status}
-            optionStatus={optionStatus}
+            option={content}
+            id={number}
+            key={number}
+            className={className}
             disabled={disabled}
-            onAnsweredQuestion={onAnsweredQuestion}
+            onAnsweredQuestion={func}
           />
-        )
-      })
-      }
+        );
+      })}
     </div>
   );
 };
 
 QuestionOptionList.propTypes = {
-  question: question.isRequired,
-  questionAnswered: funcRequired
+  optionList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  disabled: PropTypes.bool.isRequired,
+  func: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ questionList: { questions }, activeQuestion: { questionId } }) => {
-  const openedQuestionId = (!questionId && questions.length !== 0) ? questions[0].id : questionId;
-  const question = questions.find((question) => question.id === openedQuestionId);
-  return { question: { ...question } };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    questionAnswered: (result, id, answeredOptionIndex) => dispatch(questionAnswered(result, id, answeredOptionIndex))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionOptionList);
+export default QuestionOptionList;

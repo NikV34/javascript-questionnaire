@@ -1,3 +1,3 @@
-import QuestionDetails from './question-details';
+import QuestionDetailsContainer from './question-details-container';
 
-export default QuestionDetails;
+export default QuestionDetailsContainer;

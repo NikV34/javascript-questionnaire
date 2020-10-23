@@ -1,6 +1,6 @@
-import { QuestionnaireServiceProvider, QuestionnaireServiceConsumer } from './questionnaire-service-context';
-
-export {
+import {
   QuestionnaireServiceProvider,
-  QuestionnaireServiceConsumer
-};
+  QuestionnaireServiceConsumer,
+} from './questionnaire-service-context';
+
+export { QuestionnaireServiceProvider, QuestionnaireServiceConsumer };

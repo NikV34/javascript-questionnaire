@@ -1,42 +1,37 @@
 import React from 'react';
-import { number } from 'prop-types';
-
-import { questionOption, funcRequired, questionOptionStatus, disabled } from '../../types';
-import withMarkdown from '../hoc/with-markdown';
+import PropTypes from 'prop-types';
 
 import './question-option-list-item.css';
 
-const QuestionOptionListItem = ({ option, id, onAnsweredQuestion, optionStatus, disabled }) => {
-  const disabledClass = disabled ? " disabled" : "";
-
-  let statusClass = null;
-  switch (optionStatus) {
-    case true:
-      statusClass = "question-passed";
-      break;
-    case false:
-      statusClass = "question-failed";
-      break;
-    default:
-      statusClass = "";
-  };
-
+const QuestionOptionListItem = ({
+  option,
+  id,
+  className,
+  disabled,
+  onAnsweredQuestion,
+}) => {
   return (
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div
-      className={`question-option-list-item ${statusClass + disabledClass}`}
+      className={`question-option-list-item ${className}`}
       onClick={disabled ? null : () => onAnsweredQuestion(id)}
-      key={id}>
-      { withMarkdown(`${id}) ${option}`)}
+      key={id}
+    >
+      {option}
     </div>
-  )
-}
+  );
+};
 
 QuestionOptionListItem.propTypes = {
-  option: questionOption,
-  id: number,
-  onAnsweredQuestion: funcRequired,
-  optionStatus: questionOptionStatus,
-  disabled: disabled
-}
+  option: PropTypes.element.isRequired,
+  id: PropTypes.number.isRequired,
+  className: PropTypes.string,
+  disabled: PropTypes.bool.isRequired,
+  onAnsweredQuestion: PropTypes.func.isRequired,
+};
+
+QuestionOptionListItem.defaultProps = {
+  className: '',
+};
 
 export default QuestionOptionListItem;

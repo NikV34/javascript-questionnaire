@@ -1,3 +1,3 @@
-import QuestionOptionList from './question-option-list';
+import QuestionOptionListContainer from './question-option-list-container';
 
-export default QuestionOptionList;
+export default QuestionOptionListContainer;

@@ -2,10 +2,7 @@ import React from 'react';
 
 const {
   Provider: QuestionnaireServiceProvider,
-  Consumer: QuestionnaireServiceConsumer
+  Consumer: QuestionnaireServiceConsumer,
 } = React.createContext();
 
-export {
-  QuestionnaireServiceProvider,
-  QuestionnaireServiceConsumer
-};
+export { QuestionnaireServiceProvider, QuestionnaireServiceConsumer };

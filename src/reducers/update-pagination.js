@@ -5,9 +5,9 @@ const pagination = (state, action) => {
     return {
       page: 0,
       size: 10,
-      totalItems: 10
+      totalItems: 10,
     };
-  };
+  }
 
   switch (action.type) {
     case actionsType.OPEN_PREV_QUESTION:
@@ -17,17 +17,24 @@ const pagination = (state, action) => {
       const currentPage = state.pagination.page;
       return {
         ...state.pagination,
-        page: currentPage * state.pagination.size > currentIndex - 1 ? currentPage - 1 : currentPage
+        page:
+          currentPage * state.pagination.size > currentIndex - 1
+            ? currentPage - 1
+            : currentPage,
       };
 
     case actionsType.OPEN_NEXT_QUESTION:
       const curIndex = action.payload;
-      if (curIndex === state.questionList.questions.length - 1) return { ...state.pagination };
+      if (curIndex === state.questionList.questions.length - 1)
+        return { ...state.pagination };
 
       const curPage = state.pagination.page;
       return {
         ...state.pagination,
-        page: curPage * state.pagination.size + 9 < curIndex + 1 ? curPage + 1 : curPage
+        page:
+          curPage * state.pagination.size + 9 < curIndex + 1
+            ? curPage + 1
+            : curPage,
       };
 
     case actionsType.TOGGLE_START_NAVIGATION:
@@ -40,7 +47,7 @@ const pagination = (state, action) => {
       return {
         ...state.pagination,
         page: _togglePrevQuestionList(state.pagination.page),
-        totalItems: state.questionList.questions.length
+        totalItems: state.questionList.questions.length,
       };
 
     case actionsType.TOGGLE_NEXT_NAVIGATION:
@@ -48,13 +55,15 @@ const pagination = (state, action) => {
       return {
         ...state.pagination,
         page: _toggleNextQuestionList(state.pagination, totalItems),
-        totalItems: totalItems
+        totalItems,
       };
 
     case actionsType.TOGGLE_END_NAVIGATION:
       return {
         ...state.pagination,
-        page: Math.floor(state.questionList.questions.length / state.pagination.size),
+        page: Math.floor(
+          state.questionList.questions.length / state.pagination.size
+        ),
       };
 
     default:
@@ -62,11 +71,11 @@ const pagination = (state, action) => {
         return {
           page: 0,
           size: 10,
-          totalItems: 10
+          totalItems: 10,
         };
-      };
+      }
       return state.pagination;
-  };
+  }
 };
 
 const _togglePrevQuestionList = (page) => {
